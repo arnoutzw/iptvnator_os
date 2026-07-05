@@ -64,6 +64,7 @@ The application is a cross-platform, open-source project built with Electron and
 **Platform**
 
 - Cross-platform desktop (Electron) and installable PWA
+- TV mode: launch at login and start in fullscreen (Settings > General) for dedicated TV setups 📺 _(desktop; login item on macOS & Windows)_
 - Desktop auto-updater and mobile remote control _(desktop)_
 - Docker self-hosting for the PWA + web backend
 - 18 languages ([translation files](apps/web/src/assets/i18n/)), light & dark themes, and keyboard shortcuts

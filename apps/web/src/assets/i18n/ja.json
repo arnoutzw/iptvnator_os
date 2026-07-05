@@ -428,7 +428,11 @@
         "APP_UPDATE_DOWNLOAD": "Update",
         "APP_UPDATE_INSTALL": "Restart application",
         "APP_UPDATE_OPEN_RELEASE": "Open GitHub release",
-        "APP_UPDATE_RELEASE_NOTES": "What's new"
+        "APP_UPDATE_RELEASE_NOTES": "What's new",
+        "START_FULLSCREEN": "フルスクリーンで起動",
+        "START_FULLSCREEN_DESCRIPTION": "アプリの起動時にIPTVnatorをフルスクリーンで開きます。テレビでの利用に最適です。",
+        "AUTO_LAUNCH_AT_LOGIN": "ログイン時に起動",
+        "AUTO_LAUNCH_AT_LOGIN_DESCRIPTION": "コンピューターにログインしたときにIPTVnatorを自動的に起動します（macOSおよびWindows）。"
     },
     "THEMES": {
         "DARK_THEME": "ダーク",

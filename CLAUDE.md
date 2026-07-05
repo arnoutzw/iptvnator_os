@@ -658,6 +658,12 @@ This project uses modern Angular signal-based APIs and patterns. **ALWAYS** use 
 - TMDB attribution (logo + disclaimer) is required and shown in the settings TMDB section and About
 - See `docs/architecture/tmdb-metadata-enrichment.md`
 
+**TV Mode Startup (Electron only)**:
+
+- Two toggles in `Settings > General`, hidden in the PWA: "Start in fullscreen" (`startFullscreen`) and "Launch at login" (`autoLaunchAtLogin`), both optional fields on the `Settings` interface
+- `startFullscreen` is persisted by the `SETTINGS_UPDATE` handler into the electron-conf store (`START_FULLSCREEN` key in `store.service.ts`); `App.initMainWindow()` reads it and creates the BrowserWindow with `fullscreen: true`
+- `autoLaunchAtLogin` calls `app.setLoginItemSettings({ openAtLogin })` via `applyAutoLaunchAtLogin()` in `settings.events.ts` — macOS and Windows only (Electron has no Linux login-item support). It is applied immediately on save and not persisted in the store because the OS owns the login-item state; login items only take effect for the packaged app, not `nx serve`
+
 **Favorites and Recently Viewed**:
 
 - Per-playlist favorites and global favorites

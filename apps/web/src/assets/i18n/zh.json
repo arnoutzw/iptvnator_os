@@ -428,7 +428,11 @@
         "APP_UPDATE_DOWNLOAD": "Update",
         "APP_UPDATE_INSTALL": "Restart application",
         "APP_UPDATE_OPEN_RELEASE": "Open GitHub release",
-        "APP_UPDATE_RELEASE_NOTES": "What's new"
+        "APP_UPDATE_RELEASE_NOTES": "What's new",
+        "START_FULLSCREEN": "启动时全屏",
+        "START_FULLSCREEN_DESCRIPTION": "应用启动时以全屏方式打开 IPTVnator。适合电视场景使用。",
+        "AUTO_LAUNCH_AT_LOGIN": "登录时启动",
+        "AUTO_LAUNCH_AT_LOGIN_DESCRIPTION": "登录电脑时自动启动 IPTVnator（macOS 和 Windows）。"
     },
     "THEMES": {
         "DARK_THEME": "深色",

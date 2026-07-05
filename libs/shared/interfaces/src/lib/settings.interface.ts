@@ -104,6 +104,16 @@ export interface Settings {
     vlcReuseInstance: boolean;
     remoteControl: boolean;
     remoteControlPort: number;
+    /**
+     * TV mode: open the main window in fullscreen when the app starts.
+     * Electron only; applied by the main process on window creation.
+     */
+    startFullscreen?: boolean;
+    /**
+     * TV mode: register the app as an OS login item so it starts
+     * automatically after login. Electron only (macOS and Windows).
+     */
+    autoLaunchAtLogin?: boolean;
     /** Custom download folder path (uses system Downloads folder if not set) */
     downloadFolder?: string;
     /** Custom live recording folder path (uses system Downloads folder if not set) */

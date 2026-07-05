@@ -31,6 +31,8 @@ import {
 export class SettingsGeneralSectionComponent {
     readonly form = input.required<FormGroup>();
     readonly activeSection = input.required<string>();
+    /** Startup (fullscreen/login) toggles are Electron-only */
+    readonly isDesktop = input<boolean>(false);
     readonly languageEnum = input.required<typeof Language>();
     readonly themeOptions = input.required<ThemeOption[]>();
     readonly coverSizeOptions = input.required<CoverSizeOption[]>();

@@ -30,6 +30,7 @@ jest.mock('./services/store.service', () => ({
         set: jest.fn(),
     },
     WINDOW_BOUNDS: 'windowBounds',
+    START_FULLSCREEN: 'startFullscreen',
 }));
 
 import {
@@ -229,6 +230,31 @@ describe('Electron app security helpers', () => {
 
         expect(mainWindow.loadURL).toHaveBeenCalledWith(
             'http://localhost:4200'
+        );
+    });
+
+    it('creates the main window in fullscreen when START_FULLSCREEN is enabled', () => {
+        const mainWindow = createMockMainWindow();
+        (BrowserWindow as unknown as jest.Mock).mockReturnValue(mainWindow);
+        (store.get as jest.Mock).mockImplementation((key: string) =>
+            key === 'startFullscreen' ? true : undefined
+        );
+
+        getAppInternals().onReady();
+
+        expect(BrowserWindow).toHaveBeenCalledWith(
+            expect.objectContaining({ fullscreen: true })
+        );
+    });
+
+    it('does not force fullscreen when START_FULLSCREEN is disabled', () => {
+        const mainWindow = createMockMainWindow();
+        (BrowserWindow as unknown as jest.Mock).mockReturnValue(mainWindow);
+
+        getAppInternals().onReady();
+
+        expect(BrowserWindow).toHaveBeenCalledWith(
+            expect.not.objectContaining({ fullscreen: true })
         );
     });
 

@@ -1,8 +1,9 @@
-import { ipcMain } from 'electron';
+import { app, ipcMain } from 'electron';
 import { normalizeExternalPlayerArguments } from '@iptvnator/shared/interfaces';
 import {
     MPV_PLAYER_ARGUMENTS,
     MPV_REUSE_INSTANCE,
+    START_FULLSCREEN,
     store,
     VLC_PLAYER_ARGUMENTS,
     VLC_REUSE_INSTANCE,
@@ -12,6 +13,22 @@ import { httpServer } from '../server/http-server';
 export default class SettingsEvents {
     static bootstrapSettingsEvents(): Electron.IpcMain {
         return ipcMain;
+    }
+}
+
+/**
+ * Login items are only supported by Electron on macOS and Windows;
+ * on Linux autostart requires a user-managed .desktop file instead.
+ */
+export function applyAutoLaunchAtLogin(openAtLogin: boolean): void {
+    if (process.platform !== 'darwin' && process.platform !== 'win32') {
+        return;
+    }
+
+    try {
+        app.setLoginItemSettings({ openAtLogin });
+    } catch (error) {
+        console.error('Failed to update login item settings:', error);
     }
 }
 
@@ -39,6 +56,14 @@ ipcMain.handle('SETTINGS_UPDATE', (_event, arg) => {
 
     if (arg.vlcReuseInstance !== undefined) {
         store.set(VLC_REUSE_INSTANCE, arg.vlcReuseInstance);
+    }
+
+    if (arg.startFullscreen !== undefined) {
+        store.set(START_FULLSCREEN, Boolean(arg.startFullscreen));
+    }
+
+    if (arg.autoLaunchAtLogin !== undefined) {
+        applyAutoLaunchAtLogin(Boolean(arg.autoLaunchAtLogin));
     }
 
     // Handle remote control settings
