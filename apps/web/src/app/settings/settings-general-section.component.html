@@ -156,4 +156,36 @@
             <mat-checkbox formControlName="showCaptions"></mat-checkbox>
         </div>
     </div>
+
+    @if (isDesktop()) {
+        <div class="setting-item">
+            <div class="setting-item__meta">
+                <h4>{{ 'SETTINGS.START_FULLSCREEN' | translate }}</h4>
+                <p>
+                    {{ 'SETTINGS.START_FULLSCREEN_DESCRIPTION' | translate }}
+                </p>
+            </div>
+            <div class="setting-item__control setting-item__toggle">
+                <mat-checkbox
+                    formControlName="startFullscreen"
+                    data-test-id="checkbox-start-fullscreen"
+                ></mat-checkbox>
+            </div>
+        </div>
+
+        <div class="setting-item">
+            <div class="setting-item__meta">
+                <h4>{{ 'SETTINGS.AUTO_LAUNCH_AT_LOGIN' | translate }}</h4>
+                <p>
+                    {{ 'SETTINGS.AUTO_LAUNCH_AT_LOGIN_DESCRIPTION' | translate }}
+                </p>
+            </div>
+            <div class="setting-item__control setting-item__toggle">
+                <mat-checkbox
+                    formControlName="autoLaunchAtLogin"
+                    data-test-id="checkbox-auto-launch-at-login"
+                ></mat-checkbox>
+            </div>
+        </div>
+    }
 </section>

@@ -428,7 +428,11 @@
         "APP_UPDATE_DOWNLOAD": "Update",
         "APP_UPDATE_INSTALL": "Restart application",
         "APP_UPDATE_OPEN_RELEASE": "Open GitHub release",
-        "APP_UPDATE_RELEASE_NOTES": "What's new"
+        "APP_UPDATE_RELEASE_NOTES": "What's new",
+        "START_FULLSCREEN": "Εκκίνηση σε πλήρη οθόνη",
+        "START_FULLSCREEN_DESCRIPTION": "Άνοιγμα του IPTVnator σε πλήρη οθόνη κατά την εκκίνηση της εφαρμογής. Ιδανικό για χρήση σε τηλεόραση.",
+        "AUTO_LAUNCH_AT_LOGIN": "Εκκίνηση κατά τη σύνδεση",
+        "AUTO_LAUNCH_AT_LOGIN_DESCRIPTION": "Αυτόματη εκκίνηση του IPTVnator όταν συνδέεστε στον υπολογιστή σας (macOS και Windows)."
     },
     "THEMES": {
         "DARK_THEME": "Σκούρο",

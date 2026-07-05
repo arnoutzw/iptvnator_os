@@ -428,7 +428,11 @@
         "APP_UPDATE_DOWNLOAD": "Update",
         "APP_UPDATE_INSTALL": "Restart application",
         "APP_UPDATE_OPEN_RELEASE": "Open GitHub release",
-        "APP_UPDATE_RELEASE_NOTES": "What's new"
+        "APP_UPDATE_RELEASE_NOTES": "What's new",
+        "START_FULLSCREEN": "البدء فوضع ملء الشاشة",
+        "START_FULLSCREEN_DESCRIPTION": "حل IPTVnator فوضع ملء الشاشة ملي كيبدا التطبيق. مزيان للتلفزة.",
+        "AUTO_LAUNCH_AT_LOGIN": "التشغيل ملي كتدخل",
+        "AUTO_LAUNCH_AT_LOGIN_DESCRIPTION": "تشغيل IPTVnator أوتوماتيكيا ملي كتدخل للحاسوب ديالك (macOS و Windows)."
     },
     "THEMES": {
         "DARK_THEME": "داكن",

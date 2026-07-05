@@ -61,6 +61,8 @@ export function createSettingsForm(
         vlcPlayerPath: '',
         vlcPlayerArguments: '',
         vlcReuseInstance: false,
+        startFullscreen: false,
+        autoLaunchAtLogin: false,
         remoteControl: false,
         remoteControlPort: [
             8765,
@@ -134,6 +136,8 @@ export function createSettingsFromFormValue(
         vlcReuseInstance: value.vlcReuseInstance ?? false,
         remoteControl: value.remoteControl ?? false,
         remoteControlPort: Number(value.remoteControlPort ?? 8765),
+        startFullscreen: value.startFullscreen ?? false,
+        autoLaunchAtLogin: value.autoLaunchAtLogin ?? false,
         recordingFolder: value.recordingFolder ?? '',
         coverSize: value.coverSize ?? 'medium',
         epgUrl,

@@ -9,7 +9,11 @@ import {
     isWindowTraceEnabled,
     trace,
 } from './services/debug-trace';
-import { store, WINDOW_BOUNDS } from './services/store.service';
+import {
+    START_FULLSCREEN,
+    store,
+    WINDOW_BOUNDS,
+} from './services/store.service';
 
 const externalBrowserProtocols = new Set(['http:', 'https:']);
 const trustedDevRendererHosts = new Set([
@@ -327,6 +331,7 @@ export default class App {
         const height = Math.min(720, workAreaSize.height || 720);
 
         const savedWindowBounds = store.get(WINDOW_BOUNDS);
+        const startFullscreen = Boolean(store.get(START_FULLSCREEN, false));
 
         // Create the browser window.
         App.mainWindow = new BrowserWindow({
@@ -339,6 +344,8 @@ export default class App {
             minHeight: 600,
             minWidth: 900,
             ...App.getPlatformTitleBarOptions(),
+            // TV mode: boot straight into fullscreen (Settings > General)
+            ...(startFullscreen ? { fullscreen: true } : {}),
         });
         App.mainWindow.setMenu(null);
         attachWindowTrace(App.mainWindow);

@@ -100,6 +100,8 @@ const DEFAULT_SETTINGS = {
     vlcReuseInstance: false,
     remoteControl: false,
     remoteControlPort: 8765,
+    startFullscreen: false,
+    autoLaunchAtLogin: false,
     epgUrl: [],
     recordingFolder: '',
     coverSize: 'medium',

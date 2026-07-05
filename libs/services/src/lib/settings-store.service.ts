@@ -42,6 +42,8 @@ const DEFAULT_SETTINGS: Settings = {
     vlcReuseInstance: false,
     remoteControl: false,
     remoteControlPort: 8765,
+    startFullscreen: false,
+    autoLaunchAtLogin: false,
     epgUrl: [],
     downloadFolder: '',
     recordingFolder: '',
@@ -181,6 +183,12 @@ export const SettingsStore = signalStore(
                 vlcReuseInstance: store.vlcReuseInstance(),
                 remoteControl: store.remoteControl(),
                 remoteControlPort: store.remoteControlPort(),
+                startFullscreen:
+                    store.startFullscreen?.() ??
+                    DEFAULT_SETTINGS.startFullscreen,
+                autoLaunchAtLogin:
+                    store.autoLaunchAtLogin?.() ??
+                    DEFAULT_SETTINGS.autoLaunchAtLogin,
                 epgUrl: store.epgUrl(),
                 downloadFolder:
                     store.downloadFolder?.() ?? DEFAULT_SETTINGS.downloadFolder,

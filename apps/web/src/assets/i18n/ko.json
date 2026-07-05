@@ -428,7 +428,11 @@
         "APP_UPDATE_DOWNLOAD": "Update",
         "APP_UPDATE_INSTALL": "Restart application",
         "APP_UPDATE_OPEN_RELEASE": "Open GitHub release",
-        "APP_UPDATE_RELEASE_NOTES": "What's new"
+        "APP_UPDATE_RELEASE_NOTES": "What's new",
+        "START_FULLSCREEN": "전체 화면으로 시작",
+        "START_FULLSCREEN_DESCRIPTION": "앱 시작 시 IPTVnator를 전체 화면으로 엽니다. TV 환경에 적합합니다.",
+        "AUTO_LAUNCH_AT_LOGIN": "로그인 시 실행",
+        "AUTO_LAUNCH_AT_LOGIN_DESCRIPTION": "컴퓨터에 로그인할 때 IPTVnator를 자동으로 시작합니다(macOS 및 Windows)."
     },
     "THEMES": {
         "DARK_THEME": "어둡게",
