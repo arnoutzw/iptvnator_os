@@ -30,6 +30,12 @@ const electronOnlyGlobalSearchGuard = () => {
     );
 };
 
+const electronOnlyAppLauncherGuard = () => {
+    const runtime = inject(RuntimeCapabilitiesService);
+    const router = inject(Router);
+    return runtime.isElectron ? true : router.parseUrl('/workspace/sources');
+};
+
 export const routes: Routes = [
     {
         path: '',
@@ -111,6 +117,14 @@ export const routes: Routes = [
                 loadComponent: () =>
                     import('@iptvnator/portal/downloads/feature').then(
                         (c) => c.DownloadsComponent
+                    ),
+            },
+            {
+                path: 'apps',
+                canActivate: [electronOnlyAppLauncherGuard],
+                loadComponent: () =>
+                    import('./app-launcher/app-launcher.component').then(
+                        (c) => c.AppLauncherComponent
                     ),
             },
             {

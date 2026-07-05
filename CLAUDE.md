@@ -431,6 +431,7 @@ See `docs/architecture/m3u-playlist-module.md` for complete documentation.
 - Global collections: `/workspace/global-favorites`, `/workspace/global-recent`
 - Global search: `/workspace/search` (Electron-only; a guard redirects the PWA to `/workspace/sources`)
 - Downloads: `/workspace/downloads`
+- App launcher: `/workspace/apps` (Electron-only; a guard redirects the PWA to `/workspace/sources`) — `apps/web/src/app/app-launcher/`
 - Settings: `/workspace/settings` (`/settings` redirects there)
 
 **Service Architecture** (Factory Pattern):
@@ -663,6 +664,14 @@ This project uses modern Angular signal-based APIs and patterns. **ALWAYS** use 
 - Two toggles in `Settings > General`, hidden in the PWA: "Start in fullscreen" (`startFullscreen`) and "Launch at login" (`autoLaunchAtLogin`), both optional fields on the `Settings` interface
 - `startFullscreen` is persisted by the `SETTINGS_UPDATE` handler into the electron-conf store (`START_FULLSCREEN` key in `store.service.ts`); `App.initMainWindow()` reads it and creates the BrowserWindow with `fullscreen: true`
 - `autoLaunchAtLogin` calls `app.setLoginItemSettings({ openAtLogin })` via `applyAutoLaunchAtLogin()` in `settings.events.ts` — macOS and Windows only (Electron has no Linux login-item support). It is applied immediately on save and not persisted in the store because the OS owns the login-item state; login items only take effect for the packaged app, not `nx serve`
+- Resume last channel: a third `Settings > General > Startup behavior` option (`StartupBehavior.LastChannel`). `LastPlayedChannelService` (`libs/services`) records the last-played live channel to localStorage (`record()` is called from the M3U video-player's active-channel effect). On boot, `WorkspaceStartupPreferencesService.resolveInitialWorkspacePath()` returns the channel's M3U route (`/workspace/playlists/:id/all`) and arms a one-shot sessionStorage resume; the M3U video-player consumes it via `peekResume()`/`clearResume()` and reuses the existing `openM3uChannelUrl` autoplay path to select and play the channel. Falls back to the first view when there is no last channel or its playlist is gone. Currently covers M3U live TV
+
+**App Launcher (Emulators / native apps, Electron only)**:
+
+- Turns the desktop build into an all-in-one TV + emulator box: `/workspace/apps` shows a tile grid to launch native apps (PCSX2, RPCS3 seeds, plus user-added apps). A rail link (`sports_esports`) and route guard are Electron-only
+- Config: `LauncherApp` list (`libs/shared/interfaces/src/lib/launcher-app.interface.ts`, with `mergeLauncherApps` keeping the built-in seeds present) persisted in the electron-conf store under `LAUNCHER_APPS`
+- Backend IPC in `apps/electron-backend/src/app/events/app-launcher.events.ts`: `LAUNCHER:GET_APPS`, `LAUNCHER:SET_APPS`, `LAUNCHER:LAUNCH_APP`, `LAUNCHER:PICK_EXECUTABLE`. Launch resolves the path from the persisted allow-list (never a renderer-supplied path), verifies it exists, and spawns detached/unref'd via `buildLauncherSpawnSpec` (`app-launcher-spawn.ts`; macOS `.app` bundles open through `open -a`). Bridge methods: `getLauncherApps`/`setLauncherApps`/`launchApp`/`pickAppExecutable`
+- Frontend: `apps/web/src/app/app-launcher/` (`AppLauncherComponent` + `AppLauncherService`)
 
 **Favorites and Recently Viewed**:
 

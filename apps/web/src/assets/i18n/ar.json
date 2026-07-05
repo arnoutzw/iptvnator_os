@@ -432,7 +432,8 @@
         "START_FULLSCREEN": "البدء في وضع ملء الشاشة",
         "START_FULLSCREEN_DESCRIPTION": "فتح IPTVnator في وضع ملء الشاشة عند بدء تشغيل التطبيق. مثالي لأجهزة التلفزيون.",
         "AUTO_LAUNCH_AT_LOGIN": "التشغيل عند تسجيل الدخول",
-        "AUTO_LAUNCH_AT_LOGIN_DESCRIPTION": "تشغيل IPTVnator تلقائيًا عند تسجيل الدخول إلى جهاز الكمبيوتر (macOS وWindows)."
+        "AUTO_LAUNCH_AT_LOGIN_DESCRIPTION": "تشغيل IPTVnator تلقائيًا عند تسجيل الدخول إلى جهاز الكمبيوتر (macOS وWindows).",
+        "STARTUP_BEHAVIOR_LAST_CHANNEL": "استئناف آخر قناة"
     },
     "THEMES": {
         "DARK_THEME": "داكن",
@@ -1181,7 +1182,8 @@
             "XTREAM_REFRESH_DELETING_CATEGORIES": "جارٍ إزالة الفئات المخزّنة مؤقتًا...",
             "XTREAM_REFRESH_DETAIL_LOCAL": "نحتفظ بالمفضلة وسجل المشاهدة والفئات المخفية وتقدم التشغيل لاستعادتها بعد المزامنة.",
             "XTREAM_REFRESH_PROGRESS": "السجلات المحلية المعالجة: {{current}} / {{total}}",
-            "RAIL_RADIO": "راديو"
+            "RAIL_RADIO": "راديو",
+            "RAIL_APPS": "التطبيقات والألعاب"
         },
         "SOURCES": {
             "TITLE": "المصادر",
@@ -1283,5 +1285,17 @@
             "NO_ITEMS_TITLE": "Nothing watched yet",
             "NO_ITEMS_BODY": "Start watching anything from your library and it will show up here."
         }
+    },
+    "APP_LAUNCHER": {
+        "TITLE": "مشغّل التطبيقات",
+        "SUBTITLE": "شغّل المحاكيات وتطبيقات النظام الأخرى دون مغادرة IPTVnator. حدّد مسار كل تطبيق ثم انقر لتشغيله.",
+        "ADD_APP": "إضافة تطبيق",
+        "READY": "جاهز للتشغيل",
+        "NOT_CONFIGURED": "غير مهيأ — انقر لتحديد المسار",
+        "SET_PATH": "تحديد مسار الملف التنفيذي",
+        "CLEAR_PATH": "مسح المسار",
+        "REMOVE": "إزالة",
+        "LAUNCHED": "تم تشغيل {{name}}",
+        "LAUNCH_FAILED": "تعذّر تشغيل التطبيق."
     }
 }

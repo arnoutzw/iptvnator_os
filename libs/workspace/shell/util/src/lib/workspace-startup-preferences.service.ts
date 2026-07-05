@@ -1,6 +1,10 @@
 import { Injectable, inject } from '@angular/core';
 import { firstValueFrom } from 'rxjs';
-import { PlaylistsService, SettingsStore } from '@iptvnator/services';
+import {
+    LastPlayedChannelService,
+    PlaylistsService,
+    SettingsStore,
+} from '@iptvnator/services';
 import {
     StartupBehavior,
 } from '@iptvnator/shared/interfaces';
@@ -12,14 +16,20 @@ const LAST_RESTORABLE_ROUTE_STORAGE_KEY = 'workspace-last-restorable-route-v1';
 export class WorkspaceStartupPreferencesService {
     private readonly settingsStore = inject(SettingsStore);
     private readonly playlistsService = inject(PlaylistsService);
+    private readonly lastPlayedChannel = inject(LastPlayedChannelService);
 
     async resolveInitialWorkspacePath(): Promise<string> {
         await this.settingsStore.loadSettings();
 
         const showDashboard = this.showDashboard();
         const firstViewPath = this.getFirstAvailableWorkspacePath(showDashboard);
+        const behavior = this.startupBehavior();
 
-        if (this.startupBehavior() !== StartupBehavior.RestoreLastView) {
+        if (behavior === StartupBehavior.LastChannel) {
+            return (await this.resolveLastChannelPath()) ?? firstViewPath;
+        }
+
+        if (behavior !== StartupBehavior.RestoreLastView) {
             return firstViewPath;
         }
 
@@ -27,6 +37,40 @@ export class WorkspaceStartupPreferencesService {
             (await this.getValidatedLastRestorablePath(showDashboard)) ??
             firstViewPath
         );
+    }
+
+    /**
+     * Resolve the deep link to the last watched live channel and arm a one-shot
+     * resume the M3U player consumes on load. Returns null (so the caller falls
+     * back to the first view) when there is no last channel or its playlist is
+     * gone.
+     */
+    private async resolveLastChannelPath(): Promise<string | null> {
+        const lastPlayed = this.lastPlayedChannel.getLastPlayed();
+        if (!lastPlayed) {
+            return null;
+        }
+
+        try {
+            const playlists = await firstValueFrom(
+                this.playlistsService.getAllPlaylists()
+            );
+            const playlistExists = playlists.some(
+                (playlist) => playlist._id === lastPlayed.playlistId
+            );
+            if (!playlistExists) {
+                return null;
+            }
+        } catch {
+            return null;
+        }
+
+        this.lastPlayedChannel.armResume(
+            lastPlayed.playlistId,
+            lastPlayed.channelUrl
+        );
+
+        return `/workspace/playlists/${lastPlayed.playlistId}/all`;
     }
 
     async resolveDashboardPath(): Promise<string> {

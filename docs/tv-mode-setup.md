@@ -14,8 +14,13 @@ Two toggles under **Settings → General** (desktop app only):
 | **Start in fullscreen** | The app window opens fullscreen every time IPTVnator launches.        |
 | **Launch at login**     | The OS starts IPTVnator automatically after you log in (macOS/Windows).|
 
-Combine both with the OS-level **automatic login** setting (below) and the
-machine goes: power on → desktop → IPTVnator fullscreen, no interaction.
+Plus a **Startup behavior → Resume last channel** option that reopens and
+plays the last live TV channel you watched (see
+[Resume last channel](#resume-the-last-watched-channel)).
+
+Combine them with the OS-level **automatic login** setting (below) and the
+machine goes: power on → desktop → IPTVnator fullscreen, already playing your
+last channel — no interaction.
 
 > These two settings only exist in the Electron desktop build. They are
 > hidden in the browser/PWA version because a web page cannot register a
@@ -104,6 +109,48 @@ Verify the login item was created:
 - **Windows**: Task Manager → **Startup apps** → IPTVnator = Enabled.
 
 ---
+
+## Resume the last watched channel
+
+To have IPTVnator reopen your last live channel on launch:
+
+1. Open **Settings → General → Startup behavior**.
+2. Choose **Resume last channel**.
+
+On the next launch the app navigates to that channel's playlist and starts
+playing it automatically. If the channel (or its playlist) no longer exists,
+it falls back to the normal first view. This currently covers **M3U live TV**
+channels — the canonical "TV channel" — and the app remembers the channel
+across restarts.
+
+Pair this with **Start in fullscreen** + **Launch at login** + macOS
+auto-login for a true appliance: power on and your channel is already playing
+full-screen.
+
+## The app launcher (emulators & other apps)
+
+The desktop build doubles as an all-in-one TV + emulator front-end. Open the
+**Apps & games** entry in the left rail (`/workspace/apps`) to launch native
+apps without leaving IPTVnator.
+
+1. PCSX2 (PS2) and RPCS3 (PS3) tiles ship built-in but start **unconfigured**.
+2. Click a tile (or its folder icon) and pick the emulator's executable:
+    - **macOS**: the `.app` bundle, e.g. `/Applications/PCSX2.app` or
+      `/Applications/RPCS3.app` (launched via `open -a`).
+    - **Linux/Windows**: the binary or `.exe` (e.g. an AppImage, `/usr/bin/pcsx2`).
+3. Once a path is set, the tile turns into a one-click launcher.
+4. **Add app** lets you register any other executable (Dolphin, Steam Big
+   Picture, RetroArch, a browser…); the name is taken from the filename.
+5. The launcher spawns each app as an independent process — it keeps running
+   if you quit IPTVnator, and IPTVnator keeps playing if you close the app.
+
+Tip for a controller-only couch setup: launch the emulator, use it, and quit
+it to return to IPTVnator (still in fullscreen). Configure your emulators for
+fullscreen output so the whole flow stays TV-friendly.
+
+> The launcher only ever runs paths you configured yourself — it stores an
+> allow-list of executables and launches by id, so nothing can ask it to run
+> an arbitrary command.
 
 ## Step 4 — Auto-login at boot (macOS)
 

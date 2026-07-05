@@ -432,7 +432,8 @@
         "START_FULLSCREEN": "フルスクリーンで起動",
         "START_FULLSCREEN_DESCRIPTION": "アプリの起動時にIPTVnatorをフルスクリーンで開きます。テレビでの利用に最適です。",
         "AUTO_LAUNCH_AT_LOGIN": "ログイン時に起動",
-        "AUTO_LAUNCH_AT_LOGIN_DESCRIPTION": "コンピューターにログインしたときにIPTVnatorを自動的に起動します（macOSおよびWindows）。"
+        "AUTO_LAUNCH_AT_LOGIN_DESCRIPTION": "コンピューターにログインしたときにIPTVnatorを自動的に起動します（macOSおよびWindows）。",
+        "STARTUP_BEHAVIOR_LAST_CHANNEL": "最後のチャンネルを再開"
     },
     "THEMES": {
         "DARK_THEME": "ダーク",
@@ -1181,7 +1182,8 @@
             "XTREAM_REFRESH_DELETING_CATEGORIES": "キャッシュ済みカテゴリを削除しています...",
             "XTREAM_REFRESH_DETAIL_LOCAL": "お気に入り、視聴履歴、非表示カテゴリ、再生進捗を同期後に復元できるよう準備しています。",
             "XTREAM_REFRESH_PROGRESS": "処理済みローカルレコード: {{current}} / {{total}}",
-            "RAIL_RADIO": "ラジオ"
+            "RAIL_RADIO": "ラジオ",
+            "RAIL_APPS": "アプリとゲーム"
         },
         "SOURCES": {
             "TITLE": "ソース",
@@ -1283,5 +1285,17 @@
             "NO_ITEMS_TITLE": "Nothing watched yet",
             "NO_ITEMS_BODY": "Start watching anything from your library and it will show up here."
         }
+    },
+    "APP_LAUNCHER": {
+        "TITLE": "アプリランチャー",
+        "SUBTITLE": "IPTVnatorを離れずにエミュレーターやその他のネイティブアプリを起動できます。各アプリのパスを設定してクリックで起動します。",
+        "ADD_APP": "アプリを追加",
+        "READY": "起動できます",
+        "NOT_CONFIGURED": "未設定 — クリックしてパスを設定",
+        "SET_PATH": "実行ファイルのパスを設定",
+        "CLEAR_PATH": "パスをクリア",
+        "REMOVE": "削除",
+        "LAUNCHED": "{{name}} を起動しました",
+        "LAUNCH_FAILED": "アプリを起動できませんでした。"
     }
 }

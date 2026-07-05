@@ -37,6 +37,7 @@ import type {
     PlaylistRefreshPayload,
     PortalDebugEvent,
     ResolvedPortalPlayback,
+    LauncherApp,
     Settings,
     TmdbCacheEntry,
     TmdbCacheMediaType,
@@ -526,6 +527,12 @@ const electronApi: ElectronBridgeApi = {
     updateSettings: (settings: Partial<Settings>) =>
         ipcRenderer.invoke('SETTINGS_UPDATE', settings),
     getAiSettings: () => ipcRenderer.invoke('GET_AI_SETTINGS'),
+    getLauncherApps: () => ipcRenderer.invoke('LAUNCHER:GET_APPS'),
+    setLauncherApps: (apps: LauncherApp[]) =>
+        ipcRenderer.invoke('LAUNCHER:SET_APPS', apps),
+    launchApp: (appId: string) =>
+        ipcRenderer.invoke('LAUNCHER:LAUNCH_APP', appId),
+    pickAppExecutable: () => ipcRenderer.invoke('LAUNCHER:PICK_EXECUTABLE'),
     stalkerRequest: (payload: {
         url: string;
         macAddress: string;

@@ -432,7 +432,8 @@
         "START_FULLSCREEN": "Starten in volledig scherm",
         "START_FULLSCREEN_DESCRIPTION": "Open IPTVnator in volledig scherm bij het opstarten. Ideaal voor tv-opstellingen.",
         "AUTO_LAUNCH_AT_LOGIN": "Starten bij inloggen",
-        "AUTO_LAUNCH_AT_LOGIN_DESCRIPTION": "Start IPTVnator automatisch wanneer je inlogt op je computer (macOS en Windows)."
+        "AUTO_LAUNCH_AT_LOGIN_DESCRIPTION": "Start IPTVnator automatisch wanneer je inlogt op je computer (macOS en Windows).",
+        "STARTUP_BEHAVIOR_LAST_CHANNEL": "Laatste kanaal hervatten"
     },
     "THEMES": {
         "DARK_THEME": "Donker",
@@ -1181,7 +1182,8 @@
             "XTREAM_REFRESH_DELETING_CATEGORIES": "Gecachte categorieën worden verwijderd...",
             "XTREAM_REFRESH_DETAIL_LOCAL": "Favorieten, kijkgeschiedenis, verborgen categorieën en afspeelvoortgang worden klaargezet voor herstel na de synchronisatie.",
             "XTREAM_REFRESH_PROGRESS": "Lokale records verwerkt: {{current}} / {{total}}",
-            "RAIL_RADIO": "Radio"
+            "RAIL_RADIO": "Radio",
+            "RAIL_APPS": "Apps en games"
         },
         "SOURCES": {
             "TITLE": "Bronnen",
@@ -1283,5 +1285,17 @@
             "NO_ITEMS_TITLE": "Nothing watched yet",
             "NO_ITEMS_BODY": "Start watching anything from your library and it will show up here."
         }
+    },
+    "APP_LAUNCHER": {
+        "TITLE": "App-launcher",
+        "SUBTITLE": "Start emulators en andere native apps zonder IPTVnator te verlaten. Stel het pad naar elke app in en klik om te starten.",
+        "ADD_APP": "App toevoegen",
+        "READY": "Klaar om te starten",
+        "NOT_CONFIGURED": "Niet ingesteld — klik om pad in te stellen",
+        "SET_PATH": "Pad naar programma instellen",
+        "CLEAR_PATH": "Pad wissen",
+        "REMOVE": "Verwijderen",
+        "LAUNCHED": "{{name}} gestart",
+        "LAUNCH_FAILED": "Kan de app niet starten."
     }
 }

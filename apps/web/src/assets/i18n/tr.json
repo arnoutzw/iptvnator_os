@@ -432,7 +432,8 @@
         "START_FULLSCREEN": "Tam ekranda başlat",
         "START_FULLSCREEN_DESCRIPTION": "Uygulama başlatıldığında IPTVnator’ı tam ekranda aç. TV kurulumları için idealdir.",
         "AUTO_LAUNCH_AT_LOGIN": "Oturum açıldığında başlat",
-        "AUTO_LAUNCH_AT_LOGIN_DESCRIPTION": "Bilgisayarınızda oturum açtığınızda IPTVnator’ı otomatik olarak başlat (macOS ve Windows)."
+        "AUTO_LAUNCH_AT_LOGIN_DESCRIPTION": "Bilgisayarınızda oturum açtığınızda IPTVnator’ı otomatik olarak başlat (macOS ve Windows).",
+        "STARTUP_BEHAVIOR_LAST_CHANNEL": "Son kanalı sürdür"
     },
     "THEMES": {
         "DARK_THEME": "Koyu",
@@ -1181,7 +1182,8 @@
             "XTREAM_REFRESH_DELETING_CATEGORIES": "Önbelleğe alınmış kategoriler kaldırılıyor...",
             "XTREAM_REFRESH_DETAIL_LOCAL": "Favoriler, izleme geçmişi, gizli kategoriler ve oynatma ilerlemesi eşitlemeden sonra geri yüklenmek üzere hazırlanıyor.",
             "XTREAM_REFRESH_PROGRESS": "İşlenen yerel kayıtlar: {{current}} / {{total}}",
-            "RAIL_RADIO": "Radyo"
+            "RAIL_RADIO": "Radyo",
+            "RAIL_APPS": "Uygulamalar ve oyunlar"
         },
         "SOURCES": {
             "TITLE": "Kaynaklar",
@@ -1283,5 +1285,17 @@
             "NO_ITEMS_TITLE": "Nothing watched yet",
             "NO_ITEMS_BODY": "Start watching anything from your library and it will show up here."
         }
+    },
+    "APP_LAUNCHER": {
+        "TITLE": "Uygulama başlatıcı",
+        "SUBTITLE": "IPTVnator’dan çıkmadan emülatörleri ve diğer yerel uygulamaları başlatın. Her uygulamanın yolunu ayarlayın ve başlatmak için tıklayın.",
+        "ADD_APP": "Uygulama ekle",
+        "READY": "Başlatmaya hazır",
+        "NOT_CONFIGURED": "Yapılandırılmadı — yolu ayarlamak için tıklayın",
+        "SET_PATH": "Çalıştırılabilir yolu ayarla",
+        "CLEAR_PATH": "Yolu temizle",
+        "REMOVE": "Kaldır",
+        "LAUNCHED": "{{name}} başlatıldı",
+        "LAUNCH_FAILED": "Uygulama başlatılamadı."
     }
 }

@@ -88,6 +88,7 @@ import { LiveEpgPanelSummary } from '@iptvnator/ui/shared-portals';
 import { ChannelListLoadingStateComponent } from '@iptvnator/ui/components';
 import {
     DataService,
+    LastPlayedChannelService,
     PlaylistsService,
     RuntimeCapabilitiesService,
     SettingsStore,
@@ -146,6 +147,7 @@ export class VideoPlayerComponent implements OnInit, OnDestroy {
     private readonly router = inject(Router);
     private readonly runtime = inject(RuntimeCapabilitiesService);
     private readonly settingsStore = inject(SettingsStore);
+    private readonly lastPlayedChannel = inject(LastPlayedChannelService);
     private readonly storage = inject(StorageMap);
     private readonly store = inject(Store);
     private readonly epgService = inject(EpgService);
@@ -424,6 +426,12 @@ export class VideoPlayerComponent implements OnInit, OnDestroy {
 
             this.lastRecordedRecentKey = nextKey;
             void this.persistRecentlyViewedChannel(playlistId, activeChannel);
+            this.lastPlayedChannel.record({
+                provider: 'm3u',
+                playlistId,
+                channelUrl: activeChannel.url,
+                title: activeChannel.name ?? activeChannel.tvg?.name,
+            });
         });
 
         effect(() => {
@@ -471,6 +479,46 @@ export class VideoPlayerComponent implements OnInit, OnDestroy {
                 ChannelActions.setActiveChannel({ channel: matchedChannel })
             );
             this.clearConsumedChannelOpenState();
+        });
+
+        // TV-box "resume last channel" boot behavior: the startup router arms a
+        // one-shot resume; select and play that channel once its list loads.
+        effect(() => {
+            const currentView = this.activeView();
+            const channels = this.channels();
+            const playlistId = this.activePlaylistId();
+            const state =
+                this.router.currentNavigation()?.extras?.state ??
+                window.history.state;
+            const hasHistoryTarget =
+                typeof state?.openM3uChannelUrl === 'string' ||
+                typeof state?.openRecentChannelUrl === 'string';
+
+            if (
+                hasHistoryTarget ||
+                currentView !== 'all' ||
+                !playlistId ||
+                channels.length === 0
+            ) {
+                return;
+            }
+
+            const resume = this.lastPlayedChannel.peekResume();
+            if (!resume || resume.playlistId !== playlistId) {
+                return;
+            }
+
+            const matchedChannel = channels.find(
+                (channel) => channel.url === resume.channelUrl
+            );
+            if (matchedChannel) {
+                this.store.dispatch(
+                    ChannelActions.setActiveChannel({ channel: matchedChannel })
+                );
+            }
+            // Consume the one-shot resume whether or not the channel still
+            // exists, so a removed channel does not keep retriggering.
+            this.lastPlayedChannel.clearResume();
         });
 
         effect(() => {

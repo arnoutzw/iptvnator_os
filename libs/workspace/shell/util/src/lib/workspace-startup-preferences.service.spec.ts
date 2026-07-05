@@ -1,13 +1,21 @@
 import { signal } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
 import { of } from 'rxjs';
-import { PlaylistsService, SettingsStore } from '@iptvnator/services';
+import {
+    LastPlayedChannelService,
+    PlaylistsService,
+    SettingsStore,
+} from '@iptvnator/services';
 import { StartupBehavior } from '@iptvnator/shared/interfaces';
 import { WorkspaceStartupPreferencesService } from './workspace-startup-preferences.service';
 
 describe('WorkspaceStartupPreferencesService', () => {
     let service: WorkspaceStartupPreferencesService;
     let playlistsService: { getAllPlaylists: jest.Mock };
+    let lastPlayedChannel: {
+        getLastPlayed: jest.Mock;
+        armResume: jest.Mock;
+    };
     let settingsStore: {
         loadSettings: jest.Mock;
         showDashboard: ReturnType<typeof signal<boolean>>;
@@ -22,6 +30,10 @@ describe('WorkspaceStartupPreferencesService', () => {
                 of([{ _id: 'playlist-1' }])
             ),
         };
+        lastPlayedChannel = {
+            getLastPlayed: jest.fn().mockReturnValue(null),
+            armResume: jest.fn(),
+        };
         settingsStore = {
             loadSettings: jest.fn().mockResolvedValue(undefined),
             showDashboard: signal(true),
@@ -34,6 +46,10 @@ describe('WorkspaceStartupPreferencesService', () => {
                 {
                     provide: PlaylistsService,
                     useValue: playlistsService,
+                },
+                {
+                    provide: LastPlayedChannelService,
+                    useValue: lastPlayedChannel,
                 },
                 {
                     provide: SettingsStore,
@@ -100,5 +116,47 @@ describe('WorkspaceStartupPreferencesService', () => {
         await expect(service.resolveInitialWorkspacePath()).resolves.toBe(
             '/workspace/dashboard'
         );
+    });
+
+    it('resumes the last channel and arms the one-shot resume when enabled', async () => {
+        settingsStore.startupBehavior.set(StartupBehavior.LastChannel);
+        lastPlayedChannel.getLastPlayed.mockReturnValue({
+            provider: 'm3u',
+            playlistId: 'playlist-1',
+            channelUrl: 'http://example.com/stream.m3u8',
+        });
+
+        await expect(service.resolveInitialWorkspacePath()).resolves.toBe(
+            '/workspace/playlists/playlist-1/all'
+        );
+        expect(lastPlayedChannel.armResume).toHaveBeenCalledWith(
+            'playlist-1',
+            'http://example.com/stream.m3u8'
+        );
+    });
+
+    it('falls back to the first view when there is no last channel', async () => {
+        settingsStore.startupBehavior.set(StartupBehavior.LastChannel);
+        lastPlayedChannel.getLastPlayed.mockReturnValue(null);
+
+        await expect(service.resolveInitialWorkspacePath()).resolves.toBe(
+            '/workspace/dashboard'
+        );
+        expect(lastPlayedChannel.armResume).not.toHaveBeenCalled();
+    });
+
+    it('falls back to the first view when the last channel playlist is gone', async () => {
+        settingsStore.startupBehavior.set(StartupBehavior.LastChannel);
+        playlistsService.getAllPlaylists.mockReturnValue(of([]));
+        lastPlayedChannel.getLastPlayed.mockReturnValue({
+            provider: 'm3u',
+            playlistId: 'missing',
+            channelUrl: 'http://example.com/stream.m3u8',
+        });
+
+        await expect(service.resolveInitialWorkspacePath()).resolves.toBe(
+            '/workspace/dashboard'
+        );
+        expect(lastPlayedChannel.armResume).not.toHaveBeenCalled();
     });
 });

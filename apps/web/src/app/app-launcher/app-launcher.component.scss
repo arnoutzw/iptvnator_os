@@ -1,0 +1,96 @@
+.app-launcher {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    padding: 24px;
+    height: 100%;
+    box-sizing: border-box;
+    overflow-y: auto;
+
+    &__header {
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+        gap: 16px;
+        flex-wrap: wrap;
+
+        h2 {
+            margin: 0 0 4px;
+            font-size: 1.5rem;
+        }
+
+        p {
+            margin: 0;
+            opacity: 0.7;
+            max-width: 60ch;
+        }
+    }
+
+    &__grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        gap: 16px;
+    }
+
+    &__tile {
+        display: flex;
+        flex-direction: column;
+        border-radius: 12px;
+        background: rgba(127, 127, 127, 0.08);
+        border: 1px solid rgba(127, 127, 127, 0.16);
+        overflow: hidden;
+        transition:
+            transform 0.12s ease,
+            box-shadow 0.12s ease;
+
+        &:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.18);
+        }
+
+        &--disabled {
+            opacity: 0.75;
+        }
+    }
+
+    &__tile-main {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 8px;
+        padding: 28px 16px 20px;
+        border: none;
+        background: transparent;
+        color: inherit;
+        cursor: pointer;
+        text-align: center;
+
+        &:disabled {
+            cursor: progress;
+        }
+    }
+
+    &__tile-icon {
+        font-size: 48px;
+        width: 48px;
+        height: 48px;
+    }
+
+    &__tile-name {
+        font-size: 1.05rem;
+        font-weight: 600;
+    }
+
+    &__tile-status {
+        font-size: 0.8rem;
+        opacity: 0.65;
+    }
+
+    &__tile-actions {
+        display: flex;
+        justify-content: center;
+        gap: 4px;
+        padding: 4px 8px 8px;
+        border-top: 1px solid rgba(127, 127, 127, 0.12);
+    }
+}

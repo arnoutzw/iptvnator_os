@@ -432,7 +432,8 @@
         "START_FULLSCREEN": "Запускать в полноэкранном режиме",
         "START_FULLSCREEN_DESCRIPTION": "Открывать IPTVnator в полноэкранном режиме при запуске приложения. Идеально для ТВ-установок.",
         "AUTO_LAUNCH_AT_LOGIN": "Запускать при входе в систему",
-        "AUTO_LAUNCH_AT_LOGIN_DESCRIPTION": "Автоматически запускать IPTVnator при входе в систему (macOS и Windows)."
+        "AUTO_LAUNCH_AT_LOGIN_DESCRIPTION": "Автоматически запускать IPTVnator при входе в систему (macOS и Windows).",
+        "STARTUP_BEHAVIOR_LAST_CHANNEL": "Возобновить последний канал"
     },
     "THEMES": {
         "DARK_THEME": "Тёмная",
@@ -1181,7 +1182,8 @@
             "XTREAM_REFRESH_DELETING_CATEGORIES": "Удаляем кэшированные категории...",
             "XTREAM_REFRESH_DETAIL_LOCAL": "Избранное, история просмотра, скрытые категории и прогресс воспроизведения будут подготовлены для восстановления после синхронизации.",
             "XTREAM_REFRESH_PROGRESS": "Обработано локальных записей: {{current}} / {{total}}",
-            "RAIL_RADIO": "Радио"
+            "RAIL_RADIO": "Радио",
+            "RAIL_APPS": "Приложения и игры"
         },
         "SOURCES": {
             "TITLE": "Источники",
@@ -1283,5 +1285,17 @@
             "NO_ITEMS_TITLE": "Nothing watched yet",
             "NO_ITEMS_BODY": "Start watching anything from your library and it will show up here."
         }
+    },
+    "APP_LAUNCHER": {
+        "TITLE": "Запуск приложений",
+        "SUBTITLE": "Запускайте эмуляторы и другие приложения, не выходя из IPTVnator. Укажите путь к каждому приложению и нажмите, чтобы запустить.",
+        "ADD_APP": "Добавить приложение",
+        "READY": "Готово к запуску",
+        "NOT_CONFIGURED": "Не настроено — нажмите, чтобы указать путь",
+        "SET_PATH": "Указать путь к программе",
+        "CLEAR_PATH": "Очистить путь",
+        "REMOVE": "Удалить",
+        "LAUNCHED": "{{name}} запущено",
+        "LAUNCH_FAILED": "Не удалось запустить приложение."
     }
 }
