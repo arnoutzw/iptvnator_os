@@ -1,0 +1,78 @@
+<section class="app-launcher">
+    <header class="app-launcher__header">
+        <div class="app-launcher__header-text">
+            <h2>{{ 'APP_LAUNCHER.TITLE' | translate }}</h2>
+            <p>{{ 'APP_LAUNCHER.SUBTITLE' | translate }}</p>
+        </div>
+        <button
+            mat-stroked-button
+            type="button"
+            (click)="addApp()"
+            data-test-id="app-launcher-add"
+        >
+            <mat-icon>add</mat-icon>
+            {{ 'APP_LAUNCHER.ADD_APP' | translate }}
+        </button>
+    </header>
+
+    <div class="app-launcher__grid">
+        @for (app of apps(); track app.id) {
+            <div
+                class="app-launcher__tile"
+                [class.app-launcher__tile--disabled]="!isConfigured(app)"
+                [attr.data-test-id]="'app-launcher-tile-' + app.id"
+            >
+                <button
+                    type="button"
+                    class="app-launcher__tile-main"
+                    [disabled]="busyAppId() === app.id"
+                    (click)="launch(app)"
+                >
+                    <mat-icon class="app-launcher__tile-icon">{{
+                        app.icon || 'videogame_asset'
+                    }}</mat-icon>
+                    <span class="app-launcher__tile-name">{{ app.name }}</span>
+                    <span class="app-launcher__tile-status">
+                        @if (isConfigured(app)) {
+                            {{ 'APP_LAUNCHER.READY' | translate }}
+                        } @else {
+                            {{ 'APP_LAUNCHER.NOT_CONFIGURED' | translate }}
+                        }
+                    </span>
+                </button>
+
+                <div class="app-launcher__tile-actions">
+                    <button
+                        mat-icon-button
+                        type="button"
+                        [matTooltip]="'APP_LAUNCHER.SET_PATH' | translate"
+                        (click)="setPath(app)"
+                        [attr.data-test-id]="'app-launcher-setpath-' + app.id"
+                    >
+                        <mat-icon>folder_open</mat-icon>
+                    </button>
+                    @if (isConfigured(app)) {
+                        <button
+                            mat-icon-button
+                            type="button"
+                            [matTooltip]="'APP_LAUNCHER.CLEAR_PATH' | translate"
+                            (click)="clearPath(app)"
+                        >
+                            <mat-icon>backspace</mat-icon>
+                        </button>
+                    }
+                    @if (!app.builtIn) {
+                        <button
+                            mat-icon-button
+                            type="button"
+                            [matTooltip]="'APP_LAUNCHER.REMOVE' | translate"
+                            (click)="removeApp(app)"
+                        >
+                            <mat-icon>delete</mat-icon>
+                        </button>
+                    }
+                </div>
+            </div>
+        }
+    </div>
+</section>

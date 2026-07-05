@@ -1,5 +1,6 @@
 import { Conf } from 'electron-conf/main';
 import { getElectronConfigDirectory } from '@iptvnator/shared/database';
+import { LauncherApp } from '@iptvnator/shared/interfaces';
 
 export const WINDOW_BOUNDS = 'WINDOW_BOUNDS';
 export const MPV_PLAYER_PATH = 'MPV_PLAYER_PATH';
@@ -9,6 +10,7 @@ export const VLC_PLAYER_ARGUMENTS = 'VLC_PLAYER_ARGUMENTS';
 export const MPV_REUSE_INSTANCE = 'MPV_REUSE_INSTANCE';
 export const VLC_REUSE_INSTANCE = 'VLC_REUSE_INSTANCE';
 export const START_FULLSCREEN = 'START_FULLSCREEN';
+export const LAUNCHER_APPS = 'LAUNCHER_APPS';
 
 export type StoreType = {
     [WINDOW_BOUNDS]: Electron.Rectangle;
@@ -19,6 +21,7 @@ export type StoreType = {
     [MPV_REUSE_INSTANCE]: boolean;
     [VLC_REUSE_INSTANCE]: boolean;
     [START_FULLSCREEN]: boolean;
+    [LAUNCHER_APPS]: LauncherApp[];
 };
 
 // Export singleton store instance

@@ -64,7 +64,8 @@ The application is a cross-platform, open-source project built with Electron and
 **Platform**
 
 - Cross-platform desktop (Electron) and installable PWA
-- TV mode: launch at login and start in fullscreen (Settings > General) for dedicated TV setups 📺 _(desktop; login item on macOS & Windows)_
+- TV mode: launch at login, start in fullscreen, and resume the last watched channel (Settings > General) for dedicated TV setups 📺 _(desktop; login item on macOS & Windows)_ — see the [TV Mode setup guide](docs/tv-mode-setup.md)
+- App launcher: launch emulators (PCSX2, RPCS3) and other native apps from inside IPTVnator for an all-in-one TV + emulator box 🎮 _(desktop)_
 - Desktop auto-updater and mobile remote control _(desktop)_
 - Docker self-hosting for the PWA + web backend
 - 18 languages ([translation files](apps/web/src/assets/i18n/)), light & dark themes, and keyboard shortcuts

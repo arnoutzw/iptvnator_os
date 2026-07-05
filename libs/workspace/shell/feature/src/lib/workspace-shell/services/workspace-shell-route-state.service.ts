@@ -115,6 +115,15 @@ export class WorkspaceShellRouteStateService {
             exact: true,
         });
 
+        if (this.runtime.isElectron) {
+            links.push({
+                icon: 'sports_esports',
+                tooltip: this.translateText('WORKSPACE.SHELL.RAIL_APPS'),
+                path: ['/workspace/apps'],
+                exact: true,
+            });
+        }
+
         return links;
     });
     readonly isDashboardRoute = computed(

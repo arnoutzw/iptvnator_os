@@ -84,6 +84,12 @@ export const DELETE_ALL_PLAYLISTS = 'DELETE_ALL_PLAYLISTS';
 // Remote Control
 export const REMOTE_CONTROL_CHANGE_CHANNEL = 'REMOTE_CONTROL_CHANGE_CHANNEL';
 
+// App launcher (native app / emulator launching, Electron only)
+export const LAUNCHER_GET_APPS = 'LAUNCHER:GET_APPS';
+export const LAUNCHER_SET_APPS = 'LAUNCHER:SET_APPS';
+export const LAUNCHER_LAUNCH_APP = 'LAUNCHER:LAUNCH_APP';
+export const LAUNCHER_PICK_EXECUTABLE = 'LAUNCHER:PICK_EXECUTABLE';
+
 // Window controls (custom title bar on Windows/Linux)
 export const WINDOW_MINIMIZE = 'WINDOW:MINIMIZE';
 export const WINDOW_TOGGLE_MAXIMIZE = 'WINDOW:TOGGLE_MAXIMIZE';

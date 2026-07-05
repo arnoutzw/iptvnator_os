@@ -432,7 +432,8 @@
         "START_FULLSCREEN": "啟動時全螢幕",
         "START_FULLSCREEN_DESCRIPTION": "應用程式啟動時以全螢幕開啟 IPTVnator。適合電視環境使用。",
         "AUTO_LAUNCH_AT_LOGIN": "登入時啟動",
-        "AUTO_LAUNCH_AT_LOGIN_DESCRIPTION": "登入電腦時自動啟動 IPTVnator（macOS 和 Windows）。"
+        "AUTO_LAUNCH_AT_LOGIN_DESCRIPTION": "登入電腦時自動啟動 IPTVnator（macOS 和 Windows）。",
+        "STARTUP_BEHAVIOR_LAST_CHANNEL": "恢復上次頻道"
     },
     "THEMES": {
         "DARK_THEME": "深色",
@@ -1181,7 +1182,8 @@
             "XTREAM_REFRESH_DELETING_CATEGORIES": "正在移除快取的分類...",
             "XTREAM_REFRESH_DETAIL_LOCAL": "我的最愛、觀看記錄、隱藏分類和播放進度會保留，以便同步後還原。",
             "XTREAM_REFRESH_PROGRESS": "已處理本機記錄：{{current}} / {{total}}",
-            "RAIL_RADIO": "廣播"
+            "RAIL_RADIO": "廣播",
+            "RAIL_APPS": "應用程式與遊戲"
         },
         "SOURCES": {
             "TITLE": "來源",
@@ -1283,5 +1285,17 @@
             "NO_ITEMS_TITLE": "Nothing watched yet",
             "NO_ITEMS_BODY": "Start watching anything from your library and it will show up here."
         }
+    },
+    "APP_LAUNCHER": {
+        "TITLE": "應用程式啟動器",
+        "SUBTITLE": "無需離開 IPTVnator 即可啟動模擬器和其他原生應用程式。為每個應用程式設定路徑，然後點擊啟動。",
+        "ADD_APP": "新增應用程式",
+        "READY": "可以啟動",
+        "NOT_CONFIGURED": "未設定 — 點擊以設定路徑",
+        "SET_PATH": "設定執行檔路徑",
+        "CLEAR_PATH": "清除路徑",
+        "REMOVE": "移除",
+        "LAUNCHED": "已啟動 {{name}}",
+        "LAUNCH_FAILED": "無法啟動該應用程式。"
     }
 }

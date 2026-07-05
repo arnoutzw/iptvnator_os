@@ -432,7 +432,8 @@
         "START_FULLSCREEN": "Démarrer en plein écran",
         "START_FULLSCREEN_DESCRIPTION": "Ouvrir IPTVnator en plein écran au démarrage de l'application. Idéal pour les installations TV.",
         "AUTO_LAUNCH_AT_LOGIN": "Lancer à la connexion",
-        "AUTO_LAUNCH_AT_LOGIN_DESCRIPTION": "Démarrer IPTVnator automatiquement lorsque vous vous connectez à votre ordinateur (macOS et Windows)."
+        "AUTO_LAUNCH_AT_LOGIN_DESCRIPTION": "Démarrer IPTVnator automatiquement lorsque vous vous connectez à votre ordinateur (macOS et Windows).",
+        "STARTUP_BEHAVIOR_LAST_CHANNEL": "Reprendre la dernière chaîne"
     },
     "THEMES": {
         "DARK_THEME": "Sombre",
@@ -1181,7 +1182,8 @@
             "XTREAM_REFRESH_DELETING_CATEGORIES": "Suppression des catégories en cache...",
             "XTREAM_REFRESH_DETAIL_LOCAL": "Les favoris, l’historique de lecture, les catégories masquées et la progression sont préparés pour être restaurés après la synchronisation.",
             "XTREAM_REFRESH_PROGRESS": "Enregistrements locaux traités : {{current}} / {{total}}",
-            "RAIL_RADIO": "Radio"
+            "RAIL_RADIO": "Radio",
+            "RAIL_APPS": "Applis et jeux"
         },
         "SOURCES": {
             "TITLE": "Sources",
@@ -1283,5 +1285,17 @@
             "NO_ITEMS_TITLE": "Nothing watched yet",
             "NO_ITEMS_BODY": "Start watching anything from your library and it will show up here."
         }
+    },
+    "APP_LAUNCHER": {
+        "TITLE": "Lanceur d'applications",
+        "SUBTITLE": "Lancez des émulateurs et d'autres applications natives sans quitter IPTVnator. Définissez le chemin de chaque application, puis cliquez pour la démarrer.",
+        "ADD_APP": "Ajouter une application",
+        "READY": "Prêt à lancer",
+        "NOT_CONFIGURED": "Non configuré — cliquez pour définir le chemin",
+        "SET_PATH": "Définir le chemin de l'exécutable",
+        "CLEAR_PATH": "Effacer le chemin",
+        "REMOVE": "Supprimer",
+        "LAUNCHED": "{{name}} lancé",
+        "LAUNCH_FAILED": "Impossible de lancer l'application."
     }
 }

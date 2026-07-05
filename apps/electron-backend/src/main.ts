@@ -9,6 +9,7 @@ import {
     resetStaleDownloads,
     setMainWindow as setDownloadsMainWindow,
 } from './app/events/database/downloads.events';
+import AppLauncherEvents from './app/events/app-launcher.events';
 import ElectronEvents from './app/events/electron.events';
 import EmbeddedMpvEvents, {
     shutdownEmbeddedMpv,
@@ -119,6 +120,7 @@ export default class Main {
         SharedEvents.bootstrapSharedEvents();
         PlayerEvents.bootstrapPlayerEvents();
         SettingsEvents.bootstrapSettingsEvents();
+        AppLauncherEvents.bootstrapAppLauncherEvents();
         StalkerEvents.bootstrapStalkerEvents();
         XtreamEvents.bootstrapXtreamEvents();
         DatabaseEvents.bootstrapDatabaseEvents();

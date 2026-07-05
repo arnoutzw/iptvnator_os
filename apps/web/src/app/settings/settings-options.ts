@@ -72,6 +72,10 @@ export const SETTINGS_STARTUP_BEHAVIOR_OPTIONS: StartupBehaviorOption[] = [
         value: StartupBehavior.RestoreLastView,
         labelKey: 'SETTINGS.STARTUP_BEHAVIOR_RESTORE_LAST_VIEW',
     },
+    {
+        value: StartupBehavior.LastChannel,
+        labelKey: 'SETTINGS.STARTUP_BEHAVIOR_LAST_CHANNEL',
+    },
 ];
 
 export const SETTINGS_OS_PLAYER_OPTIONS: SettingsPlayerOption[] = [

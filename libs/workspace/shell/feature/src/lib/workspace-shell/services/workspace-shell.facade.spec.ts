@@ -677,6 +677,12 @@ describe('WorkspaceShellFacade', () => {
                 path: ['/workspace/global-recent'],
                 exact: true,
             },
+            {
+                icon: 'sports_esports',
+                tooltip: 'WORKSPACE.SHELL.RAIL_APPS',
+                path: ['/workspace/apps'],
+                exact: true,
+            },
         ]);
         expect(facade.brandLink()).toBe('/workspace/sources');
     });

@@ -432,7 +432,8 @@
         "START_FULLSCREEN": "Iniciar em ecrã inteiro",
         "START_FULLSCREEN_DESCRIPTION": "Abrir o IPTVnator em ecrã inteiro ao iniciar a aplicação. Ideal para configurações de TV.",
         "AUTO_LAUNCH_AT_LOGIN": "Iniciar ao iniciar sessão",
-        "AUTO_LAUNCH_AT_LOGIN_DESCRIPTION": "Iniciar o IPTVnator automaticamente quando inicia sessão no computador (macOS e Windows)."
+        "AUTO_LAUNCH_AT_LOGIN_DESCRIPTION": "Iniciar o IPTVnator automaticamente quando inicia sessão no computador (macOS e Windows).",
+        "STARTUP_BEHAVIOR_LAST_CHANNEL": "Retomar último canal"
     },
     "THEMES": {
         "DARK_THEME": "Escuro",
@@ -1181,7 +1182,8 @@
             "XTREAM_REFRESH_DELETING_CATEGORIES": "Removendo categorias em cache...",
             "XTREAM_REFRESH_DETAIL_LOCAL": "Favoritos, histórico de visualização, categorias ocultas e progresso de reprodução serão mantidos para restauração após a sincronização.",
             "XTREAM_REFRESH_PROGRESS": "Registros locais processados: {{current}} / {{total}}",
-            "RAIL_RADIO": "Rádio"
+            "RAIL_RADIO": "Rádio",
+            "RAIL_APPS": "Apps e jogos"
         },
         "SOURCES": {
             "TITLE": "Fontes",
@@ -1283,5 +1285,17 @@
             "NO_ITEMS_TITLE": "Nothing watched yet",
             "NO_ITEMS_BODY": "Start watching anything from your library and it will show up here."
         }
+    },
+    "APP_LAUNCHER": {
+        "TITLE": "Iniciador de aplicações",
+        "SUBTITLE": "Inicie emuladores e outras aplicações nativas sem sair do IPTVnator. Defina o caminho de cada aplicação e clique para a iniciar.",
+        "ADD_APP": "Adicionar aplicação",
+        "READY": "Pronto a iniciar",
+        "NOT_CONFIGURED": "Não configurado — clique para definir o caminho",
+        "SET_PATH": "Definir caminho do executável",
+        "CLEAR_PATH": "Limpar caminho",
+        "REMOVE": "Remover",
+        "LAUNCHED": "{{name}} iniciado",
+        "LAUNCH_FAILED": "Não foi possível iniciar a aplicação."
     }
 }

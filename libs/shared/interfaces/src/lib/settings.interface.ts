@@ -18,6 +18,12 @@ export enum VideoPlayer {
 export enum StartupBehavior {
     FirstView = 'first-view',
     RestoreLastView = 'restore-last-view',
+    /**
+     * TV-box behavior: resume playback of the last watched live channel on
+     * launch. Electron only; falls back to the first view when no last channel
+     * is available. Currently covers M3U live TV.
+     */
+    LastChannel = 'last-channel',
 }
 
 export type CoverSize = 'small' | 'medium' | 'large';

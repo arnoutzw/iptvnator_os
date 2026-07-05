@@ -12,6 +12,7 @@ import {
     GlobalSearchResult,
     GlobalSearchResultSource,
 } from './global-search-result.interface';
+import { LaunchAppResult, LauncherApp } from './launcher-app.interface';
 import { M3uFavoriteChannel } from './m3u-favorite-channel.interface';
 import { PlaybackPositionData } from './playback-position.interface';
 import {
@@ -616,6 +617,14 @@ export interface ElectronBridgeApi {
     ) => Promise<EpgProgram[]>;
     updateSettings: (settings: Partial<Settings>) => Promise<void>;
     getAiSettings: () => Promise<ElectronBridgeAiSettings>;
+    /** App launcher: list the configured launchable native apps/emulators. */
+    getLauncherApps: () => Promise<LauncherApp[]>;
+    /** App launcher: persist the launchable app list. */
+    setLauncherApps: (apps: LauncherApp[]) => Promise<LauncherApp[]>;
+    /** App launcher: launch a configured app by id (spawns detached). */
+    launchApp: (appId: string) => Promise<LaunchAppResult>;
+    /** App launcher: pick an executable / macOS `.app` bundle via a dialog. */
+    pickAppExecutable: () => Promise<string | null>;
     setMpvPlayerPath: (mpvPlayerPath: string) => Promise<void>;
     setVlcPlayerPath: (vlcPlayerPath: string) => Promise<void>;
     stalkerRequest: (
