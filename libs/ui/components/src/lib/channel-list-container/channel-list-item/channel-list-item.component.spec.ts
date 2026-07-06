@@ -112,6 +112,32 @@ describe('ChannelListItemComponent', () => {
         expect(activated).toHaveBeenCalledTimes(1);
     });
 
+    it('is keyboard-focusable and activates on Enter (TV remote OK)', () => {
+        const clicked = jest.fn();
+        const activated = jest.fn();
+        fixture.componentInstance.clicked.subscribe(clicked);
+        fixture.componentInstance.activated.subscribe(activated);
+        fixture.componentRef.setInput('name', 'Channel One');
+        fixture.detectChanges();
+
+        const item = fixture.nativeElement.querySelector(
+            '[data-test-id="channel-item"]'
+        ) as HTMLElement;
+        expect(item.getAttribute('tabindex')).toBe('0');
+        expect(item.getAttribute('role')).toBe('button');
+
+        item.dispatchEvent(
+            new KeyboardEvent('keydown', {
+                key: 'Enter',
+                bubbles: true,
+                cancelable: true,
+            })
+        );
+
+        expect(clicked).toHaveBeenCalledTimes(1);
+        expect(activated).toHaveBeenCalledTimes(1);
+    });
+
     it('emits a context menu request on right click when details are enabled', () => {
         fixture.componentRef.setInput('name', 'News One');
         fixture.componentRef.setInput('showDetailsContextMenu', true);

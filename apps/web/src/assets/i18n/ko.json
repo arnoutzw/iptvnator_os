@@ -433,7 +433,9 @@
         "START_FULLSCREEN_DESCRIPTION": "앱 시작 시 IPTVnator를 전체 화면으로 엽니다. TV 환경에 적합합니다.",
         "AUTO_LAUNCH_AT_LOGIN": "로그인 시 실행",
         "AUTO_LAUNCH_AT_LOGIN_DESCRIPTION": "컴퓨터에 로그인할 때 IPTVnator를 자동으로 시작합니다(macOS 및 Windows).",
-        "STARTUP_BEHAVIOR_LAST_CHANNEL": "마지막 채널 이어보기"
+        "STARTUP_BEHAVIOR_LAST_CHANNEL": "마지막 채널 이어보기",
+        "TV_REMOTE_NAVIGATION": "TV 리모컨 탐색",
+        "TV_REMOTE_NAVIGATION_DESCRIPTION": "방향키, OK(Enter), 뒤로 키로 탐색합니다. 포커스된 항목이 강조 표시됩니다. 비활성화하면 방향키의 기본 동작(스크롤, 플레이어 탐색/음량)이 복원됩니다."
     },
     "THEMES": {
         "DARK_THEME": "어둡게",

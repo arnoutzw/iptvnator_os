@@ -96,6 +96,18 @@ export class ChannelListItemComponent {
         this.clicked.emit();
     }
 
+    /**
+     * Keyboard/TV-remote activation (Enter or Space on the focused item).
+     * Emits both `clicked` and `activated` so the channel opens regardless of
+     * the "open stream on double click" preference — a remote has no
+     * double-click gesture.
+     */
+    onKeyboardActivate(event: Event): void {
+        event.preventDefault();
+        this.clicked.emit();
+        this.activated.emit();
+    }
+
     onDoubleClick(): void {
         this.activated.emit();
     }

@@ -433,7 +433,9 @@
         "START_FULLSCREEN_DESCRIPTION": "حل IPTVnator فوضع ملء الشاشة ملي كيبدا التطبيق. مزيان للتلفزة.",
         "AUTO_LAUNCH_AT_LOGIN": "التشغيل ملي كتدخل",
         "AUTO_LAUNCH_AT_LOGIN_DESCRIPTION": "تشغيل IPTVnator أوتوماتيكيا ملي كتدخل للحاسوب ديالك (macOS و Windows).",
-        "STARTUP_BEHAVIOR_LAST_CHANNEL": "كمّل آخر قناة"
+        "STARTUP_BEHAVIOR_LAST_CHANNEL": "كمّل آخر قناة",
+        "TV_REMOTE_NAVIGATION": "التنقل بريموت التلفزة",
+        "TV_REMOTE_NAVIGATION_DESCRIPTION": "تنقّل بسهام الكيبورد، OK (Enter) والرجوع — العنصر المحدد كيتميّز. عطّل باش ترجع السلوك الأصلي ديال السهام (السكرول، التقديم/الصوت فالمشغل)."
     },
     "THEMES": {
         "DARK_THEME": "داكن",

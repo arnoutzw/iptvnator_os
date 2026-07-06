@@ -666,6 +666,13 @@ This project uses modern Angular signal-based APIs and patterns. **ALWAYS** use 
 - `autoLaunchAtLogin` calls `app.setLoginItemSettings({ openAtLogin })` via `applyAutoLaunchAtLogin()` in `settings.events.ts` — macOS and Windows only (Electron has no Linux login-item support). It is applied immediately on save and not persisted in the store because the OS owns the login-item state; login items only take effect for the packaged app, not `nx serve`
 - Resume last channel: a third `Settings > General > Startup behavior` option (`StartupBehavior.LastChannel`). `LastPlayedChannelService` (`libs/services`) records the last-played live channel to localStorage (`record()` is called from the M3U video-player's active-channel effect). On boot, `WorkspaceStartupPreferencesService.resolveInitialWorkspacePath()` returns the channel's M3U route (`/workspace/playlists/:id/all`) and arms a one-shot sessionStorage resume; the M3U video-player consumes it via `peekResume()`/`clearResume()` and reuses the existing `openM3uChannelUrl` autoplay path to select and play the channel. Falls back to the first view when there is no last channel or its playlist is gone. Currently covers M3U live TV
 
+**TV Remote Navigation (10-foot UI)**:
+
+- Arrow keys move a visible focus spatially, Enter (OK) activates, Escape/`BrowserBack`/`GoBack` walks up (blur input → CDK overlay → detail watch-state → router back, never beyond the workspace home). Toggle: `Settings > General > TV remote navigation` (`tvRemoteNavigation`, default on, works in Electron and PWA)
+- Engine: `libs/services/src/lib/tv-navigation/` — pure geometry in `spatial-navigation.util.ts`, DOM scoping/exemptions in `tv-navigation-dom.util.ts`, `TvNavigationService` wires capture-phase arrows/Enter + bubble-phase back; enabled from an `AppComponent` effect; tags `<body>` with `tv-nav-active` (bold focus ring in `apps/web/src/styles.scss`)
+- Scoping: navigation is confined to the topmost open `.cdk-overlay-pane`; contexts with native arrow semantics (menus, select/autocomplete panels, sliders, radio groups, tab lists, text inputs) are exempt
+- Enter synthesis is limited to checkbox/radio inputs — custom tiles (`channel-list-item`, `content-card`) bind their own `keydown.enter`/`.space` (plus `tabindex`/`role="button"`), and media shortcut handlers (`audio-player`, `embedded-mpv-shortcuts`) skip `defaultPrevented` events so an arrow press never both moves focus and seeks/changes volume
+
 **App Launcher (Emulators / native apps, Electron only)**:
 
 - Turns the desktop build into an all-in-one TV + emulator box: `/workspace/apps` shows a tile grid to launch native apps (PCSX2, RPCS3 seeds, plus user-added apps). A rail link (`sports_esports`) and route guard are Electron-only

@@ -234,3 +234,20 @@ textarea,
     white-space: nowrap;
     border: 0;
 }
+
+// TV-remote navigation (10-foot UI): while the spatial-navigation engine is
+// active it tags <body> with `tv-nav-active` and drives focus with the arrow
+// keys. The focused element needs a focus ring bold enough to read from a
+// couch — the default Material focus treatment is too subtle at TV distance.
+body.tv-nav-active :focus {
+    outline: 3px solid var(--mat-sys-primary, #7ab8ff) !important;
+    outline-offset: 2px;
+    border-radius: 6px;
+    transition: outline-offset 80ms ease;
+}
+
+// Inputs keep their own affordance; a double ring looks broken.
+body.tv-nav-active input:focus,
+body.tv-nav-active textarea:focus {
+    outline-offset: 0;
+}

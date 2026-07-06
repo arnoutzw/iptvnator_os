@@ -44,6 +44,7 @@ const DEFAULT_SETTINGS: Settings = {
     remoteControlPort: 8765,
     startFullscreen: false,
     autoLaunchAtLogin: false,
+    tvRemoteNavigation: true,
     epgUrl: [],
     downloadFolder: '',
     recordingFolder: '',
@@ -189,6 +190,9 @@ export const SettingsStore = signalStore(
                 autoLaunchAtLogin:
                     store.autoLaunchAtLogin?.() ??
                     DEFAULT_SETTINGS.autoLaunchAtLogin,
+                tvRemoteNavigation:
+                    store.tvRemoteNavigation?.() ??
+                    DEFAULT_SETTINGS.tvRemoteNavigation,
                 epgUrl: store.epgUrl(),
                 downloadFolder:
                     store.downloadFolder?.() ?? DEFAULT_SETTINGS.downloadFolder,

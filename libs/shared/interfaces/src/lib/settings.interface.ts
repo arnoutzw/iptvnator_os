@@ -120,6 +120,13 @@ export interface Settings {
      * automatically after login. Electron only (macOS and Windows).
      */
     autoLaunchAtLogin?: boolean;
+    /**
+     * TV mode: navigate the UI with a TV remote / keyboard — arrow keys move
+     * a visible focus spatially, Enter (OK) activates, Escape/Back walks up.
+     * Enabled by default; disable to restore native arrow-key behavior
+     * (page scrolling, player seek/volume shortcuts).
+     */
+    tvRemoteNavigation?: boolean;
     /** Custom download folder path (uses system Downloads folder if not set) */
     downloadFolder?: string;
     /** Custom live recording folder path (uses system Downloads folder if not set) */

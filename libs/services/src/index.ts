@@ -16,4 +16,5 @@ export * from './lib/runtime-capabilities.service';
 export * from './lib/settings-store.service';
 export * from './lib/sort.service';
 export * from './lib/tmdb';
+export * from './lib/tv-navigation';
 export * from './lib/xtream-pending-restore.service';

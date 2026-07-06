@@ -127,6 +127,29 @@ Pair this with **Start in fullscreen** + **Launch at login** + macOS
 auto-login for a true appliance: power on and your channel is already playing
 full-screen.
 
+## Navigating with a TV remote
+
+The whole UI can be driven with just four kinds of keys — ideal for an
+HDMI-CEC remote, an air mouse in keyboard mode, or a media keyboard:
+
+| Key                        | Action                                                      |
+| -------------------------- | ----------------------------------------------------------- |
+| **Arrow keys**             | Move the focus spatially; the focused item gets a bold ring |
+| **OK / Enter**             | Activate the focused item (play channel, open page, toggle) |
+| **Back / Escape**          | Step back: leave a text field → close a dialog → exit the player view → previous page |
+
+This is on by default (**Settings → General → TV remote navigation**). Notes:
+
+- Focus is trapped inside open dialogs, and menus/dropdowns keep their native
+  arrow behavior — arrows walk the menu items, OK picks one, Back closes it.
+- Focusing a search box hands the arrows to the text cursor; press **Back**
+  once to leave the field and resume navigating.
+- While navigation is on, the player's arrow-key shortcuts (seek/volume on the
+  embedded players) yield to focus movement. If you prefer the seek/volume
+  shortcuts, turn the toggle off — with a real remote you'd use the TV's
+  volume keys anyway.
+- Back never exits the app: it stops at the dashboard/sources home.
+
 ## The app launcher (emulators & other apps)
 
 The desktop build doubles as an all-in-one TV + emulator front-end. Open the

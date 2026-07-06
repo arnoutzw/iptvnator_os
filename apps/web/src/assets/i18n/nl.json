@@ -433,7 +433,9 @@
         "START_FULLSCREEN_DESCRIPTION": "Open IPTVnator in volledig scherm bij het opstarten. Ideaal voor tv-opstellingen.",
         "AUTO_LAUNCH_AT_LOGIN": "Starten bij inloggen",
         "AUTO_LAUNCH_AT_LOGIN_DESCRIPTION": "Start IPTVnator automatisch wanneer je inlogt op je computer (macOS en Windows).",
-        "STARTUP_BEHAVIOR_LAST_CHANNEL": "Laatste kanaal hervatten"
+        "STARTUP_BEHAVIOR_LAST_CHANNEL": "Laatste kanaal hervatten",
+        "TV_REMOTE_NAVIGATION": "Navigatie met tv-afstandsbediening",
+        "TV_REMOTE_NAVIGATION_DESCRIPTION": "Navigeer met pijltjestoetsen, OK (Enter) en Terug — het geselecteerde item wordt gemarkeerd. Schakel uit om het standaardgedrag van de pijltjestoetsen te herstellen (scrollen, spoelen/volume in de speler)."
     },
     "THEMES": {
         "DARK_THEME": "Donker",

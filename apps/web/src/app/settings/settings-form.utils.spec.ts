@@ -17,6 +17,22 @@ describe('settings form utils', () => {
         expect(settings.autoLaunchAtLogin).toBe(false);
     });
 
+    it('defaults TV remote navigation to enabled and maps its toggle', () => {
+        const form = createSettingsForm(formBuilder, false);
+
+        expect(
+            createSettingsFromFormValue(form, {} as Settings)
+                .tvRemoteNavigation
+        ).toBe(true);
+
+        form.patchValue({ tvRemoteNavigation: false });
+
+        expect(
+            createSettingsFromFormValue(form, {} as Settings)
+                .tvRemoteNavigation
+        ).toBe(false);
+    });
+
     it('maps the TV mode startup toggles from the form value', () => {
         const form = createSettingsForm(formBuilder, false);
         form.patchValue({ startFullscreen: true, autoLaunchAtLogin: true });

@@ -433,7 +433,9 @@
         "START_FULLSCREEN_DESCRIPTION": "Άνοιγμα του IPTVnator σε πλήρη οθόνη κατά την εκκίνηση της εφαρμογής. Ιδανικό για χρήση σε τηλεόραση.",
         "AUTO_LAUNCH_AT_LOGIN": "Εκκίνηση κατά τη σύνδεση",
         "AUTO_LAUNCH_AT_LOGIN_DESCRIPTION": "Αυτόματη εκκίνηση του IPTVnator όταν συνδέεστε στον υπολογιστή σας (macOS και Windows).",
-        "STARTUP_BEHAVIOR_LAST_CHANNEL": "Συνέχιση τελευταίου καναλιού"
+        "STARTUP_BEHAVIOR_LAST_CHANNEL": "Συνέχιση τελευταίου καναλιού",
+        "TV_REMOTE_NAVIGATION": "Πλοήγηση με τηλεχειριστήριο TV",
+        "TV_REMOTE_NAVIGATION_DESCRIPTION": "Πλοηγηθείτε με τα βέλη, OK (Enter) και Πίσω — το εστιασμένο στοιχείο επισημαίνεται. Απενεργοποιήστε για να επαναφέρετε την εγγενή συμπεριφορά των βελών (κύλιση, αναζήτηση/ένταση στο πρόγραμμα αναπαραγωγής)."
     },
     "THEMES": {
         "DARK_THEME": "Σκούρο",

@@ -433,7 +433,9 @@
         "START_FULLSCREEN_DESCRIPTION": "アプリの起動時にIPTVnatorをフルスクリーンで開きます。テレビでの利用に最適です。",
         "AUTO_LAUNCH_AT_LOGIN": "ログイン時に起動",
         "AUTO_LAUNCH_AT_LOGIN_DESCRIPTION": "コンピューターにログインしたときにIPTVnatorを自動的に起動します（macOSおよびWindows）。",
-        "STARTUP_BEHAVIOR_LAST_CHANNEL": "最後のチャンネルを再開"
+        "STARTUP_BEHAVIOR_LAST_CHANNEL": "最後のチャンネルを再開",
+        "TV_REMOTE_NAVIGATION": "テレビリモコンナビゲーション",
+        "TV_REMOTE_NAVIGATION_DESCRIPTION": "矢印キー、OK（Enter）、戻るで操作します。フォーカスされた項目がハイライトされます。無効にすると矢印キーの標準動作（スクロール、プレーヤーのシーク/音量）に戻ります。"
     },
     "THEMES": {
         "DARK_THEME": "ダーク",
