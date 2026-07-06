@@ -140,6 +140,11 @@ HDMI-CEC remote, an air mouse in keyboard mode, or a media keyboard:
 
 This is on by default (**Settings → General → TV remote navigation**). Notes:
 
+- **Zapping**: while watching a channel with the sidebar hidden, press **←**
+  to slide the channel list in on the left — focus lands on the playing
+  channel, **↑/↓** browse the list, **OK** switches channel, and **Back**
+  tucks the panel away again. Works in the M3U player and the Xtream/Stalker
+  live views.
 - Focus is trapped inside open dialogs, and menus/dropdowns keep their native
   arrow behavior — arrows walk the menu items, OK picks one, Back closes it.
 - Focusing a search box hands the arrows to the text cursor; press **Back**

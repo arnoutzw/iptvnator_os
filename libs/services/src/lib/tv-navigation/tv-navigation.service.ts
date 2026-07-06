@@ -45,17 +45,55 @@ const BACK_STOP_PATHS = new Set([
  * arrow-key semantics (menus, select panels, sliders, text inputs) are left
  * untouched.
  */
+/**
+ * Consulted when an arrow press hits a spatial dead-end (nothing focusable in
+ * that direction). Return true to consume the key — e.g. the live player view
+ * opens its collapsed channel sidebar on a left-edge press.
+ */
+export type TvNavBoundaryHandler = (direction: SpatialDirection) => boolean;
+
+/**
+ * Consulted by the Back ladder after overlays/watch-state but before router
+ * back. Return true to consume — e.g. close an open channel sidebar instead
+ * of leaving the player page.
+ */
+export type TvNavBackHandler = () => boolean;
+
 @Injectable({ providedIn: 'root' })
 export class TvNavigationService {
     private readonly location = inject(Location);
     private readonly router = inject(Router);
 
     private enabled = false;
+    private readonly boundaryHandlers: TvNavBoundaryHandler[] = [];
+    private readonly backHandlers: TvNavBackHandler[] = [];
 
     private readonly onCaptureKeydown = (event: KeyboardEvent): void =>
         this.handleCaptureKeydown(event);
     private readonly onBubbleKeydown = (event: KeyboardEvent): void =>
         this.handleBubbleKeydown(event);
+
+    /** Register a spatial dead-end handler. Returns the unregister function. */
+    registerBoundaryHandler(handler: TvNavBoundaryHandler): () => void {
+        this.boundaryHandlers.push(handler);
+        return () => {
+            const index = this.boundaryHandlers.indexOf(handler);
+            if (index >= 0) {
+                this.boundaryHandlers.splice(index, 1);
+            }
+        };
+    }
+
+    /** Register a Back-ladder handler. Returns the unregister function. */
+    registerBackHandler(handler: TvNavBackHandler): () => void {
+        this.backHandlers.push(handler);
+        return () => {
+            const index = this.backHandlers.indexOf(handler);
+            if (index >= 0) {
+                this.backHandlers.splice(index, 1);
+            }
+        };
+    }
 
     setEnabled(enabled: boolean): void {
         if (enabled === this.enabled) {
@@ -144,6 +182,13 @@ export class TvNavigationService {
             }));
 
         if (!active || active === document.body) {
+            // Nothing focused yet (typical while watching a channel): give
+            // view-level handlers first shot — e.g. left opens the channel
+            // sidebar — before picking a generic entry candidate.
+            if (this.runBoundaryHandlers(direction)) {
+                event.preventDefault();
+                return;
+            }
             this.focusInitialCandidate(root, event);
             return;
         }
@@ -157,7 +202,32 @@ export class TvNavigationService {
         if (target) {
             event.preventDefault();
             this.moveFocus(target);
+            return;
         }
+
+        // Spatial dead-end: let the active view react (open a side panel, …).
+        if (this.runBoundaryHandlers(direction)) {
+            event.preventDefault();
+        }
+    }
+
+    /** Most-recently-registered handler wins (innermost view first). */
+    private runBoundaryHandlers(direction: SpatialDirection): boolean {
+        for (let i = this.boundaryHandlers.length - 1; i >= 0; i--) {
+            if (this.boundaryHandlers[i](direction)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private runBackHandlers(): boolean {
+        for (let i = this.backHandlers.length - 1; i >= 0; i--) {
+            if (this.backHandlers[i]()) {
+                return true;
+            }
+        }
+        return false;
     }
 
     private handleEnter(event: KeyboardEvent): void {
@@ -213,7 +283,13 @@ export class TvNavigationService {
             return;
         }
 
-        // 5. Otherwise: history back, but never beyond the workspace home.
+        // 5. View-level back handlers (e.g. close the channel sidebar).
+        if (this.runBackHandlers()) {
+            event.preventDefault();
+            return;
+        }
+
+        // 6. Otherwise: history back, but never beyond the workspace home.
         const currentPath = this.router.url.split('?')[0];
         if (BACK_STOP_PATHS.has(currentPath)) {
             return;

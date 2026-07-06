@@ -68,7 +68,12 @@ import {
 } from '@iptvnator/shared/interfaces';
 import { PortalChannelsListComponent } from '../portal-channels-list/portal-channels-list.component';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
-import { RuntimeCapabilitiesService, SettingsStore } from '@iptvnator/services';
+import {
+    RuntimeCapabilitiesService,
+    SettingsStore,
+    TvNavigationService,
+    TvNavLiveSidebarController,
+} from '@iptvnator/services';
 import { LiveStreamAutoOpenStateService } from './live-stream-auto-open-state.service';
 
 const LIVE_CHANNEL_SORT_STORAGE_KEY = 'xtream-live-channel-sort-mode';
@@ -125,6 +130,19 @@ export class LiveStreamLayoutComponent implements OnInit, OnDestroy {
         LiveLayoutSidebarStateService
     );
     private readonly liveAutoOpenState = inject(LiveStreamAutoOpenStateService);
+    private readonly tvNavigation = inject(TvNavigationService);
+    /** TV-remote zapping: ← opens the channel sidebar, Back closes it. */
+    private readonly tvNavSidebar = new TvNavLiveSidebarController(
+        this.tvNavigation,
+        {
+            isSidebarCollapsed: () => this.liveSidebarStateService.isCollapsed(),
+            openSidebar: () => this.liveSidebarStateService.setState('expanded'),
+            closeSidebar: () =>
+                this.liveSidebarStateService.setState('collapsed'),
+            getSidebarElement: () =>
+                this.hostElement.nativeElement.querySelector('.sidebar'),
+        }
+    );
 
     readonly categories = this.xtreamStore.getCategoriesBySelectedType;
     readonly categoryItemCounts = this.xtreamStore.getCategoryItemCounts;
@@ -392,6 +410,7 @@ export class LiveStreamLayoutComponent implements OnInit, OnDestroy {
     }
 
     ngOnInit() {
+        this.tvNavSidebar.attach();
         const remoteControl = this.remoteControlBridge;
         if (remoteControl?.onChannelChange) {
             const unsubscribe = remoteControl.onChannelChange(
@@ -537,6 +556,7 @@ export class LiveStreamLayoutComponent implements OnInit, OnDestroy {
     }
 
     ngOnDestroy(): void {
+        this.tvNavSidebar.detach();
         this.unsubscribeRemoteChannelChange?.();
         this.unsubscribeRemoteCommand?.();
     }
