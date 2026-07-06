@@ -258,6 +258,88 @@ describe('TvNavigationService', () => {
         expect(location.back).not.toHaveBeenCalled();
     });
 
+    it('consults boundary handlers at a spatial dead-end and consumes the key', () => {
+        const only = createButton('only', {
+            left: 0,
+            top: 0,
+            width: 100,
+            height: 40,
+        });
+        const boundary = jest.fn().mockReturnValue(true);
+
+        service.setEnabled(true);
+        service.registerBoundaryHandler(boundary);
+        only.focus();
+        const event = pressKey('ArrowLeft');
+
+        expect(boundary).toHaveBeenCalledWith('left');
+        expect(event.defaultPrevented).toBe(true);
+    });
+
+    it('consults boundary handlers before the entry candidate when nothing is focused', () => {
+        createButton('first', { left: 10, top: 10, width: 100, height: 40 });
+        const boundary = jest.fn().mockReturnValue(true);
+
+        service.setEnabled(true);
+        service.registerBoundaryHandler(boundary);
+        (document.activeElement as HTMLElement | null)?.blur();
+        pressKey('ArrowLeft');
+
+        expect(boundary).toHaveBeenCalledWith('left');
+        expect(document.activeElement).toBe(document.body);
+    });
+
+    it('falls through to the entry candidate when boundary handlers decline', () => {
+        const first = createButton('first', {
+            left: 10,
+            top: 10,
+            width: 100,
+            height: 40,
+        });
+        const boundary = jest.fn().mockReturnValue(false);
+
+        service.setEnabled(true);
+        service.registerBoundaryHandler(boundary);
+        (document.activeElement as HTMLElement | null)?.blur();
+        pressKey('ArrowDown');
+
+        expect(document.activeElement).toBe(first);
+    });
+
+    it('stops consulting an unregistered boundary handler', () => {
+        const boundary = jest.fn().mockReturnValue(true);
+
+        service.setEnabled(true);
+        const unregister = service.registerBoundaryHandler(boundary);
+        unregister();
+        pressKey('ArrowLeft');
+
+        expect(boundary).not.toHaveBeenCalled();
+    });
+
+    it('consults back handlers before navigating back', () => {
+        const back = jest.fn().mockReturnValue(true);
+
+        service.setEnabled(true);
+        service.registerBackHandler(back);
+        const event = pressKey('Escape');
+
+        expect(back).toHaveBeenCalled();
+        expect(location.back).not.toHaveBeenCalled();
+        expect(event.defaultPrevented).toBe(true);
+    });
+
+    it('falls through to history back when back handlers decline', () => {
+        const back = jest.fn().mockReturnValue(false);
+
+        service.setEnabled(true);
+        service.registerBackHandler(back);
+        pressKey('Escape');
+
+        expect(back).toHaveBeenCalled();
+        expect(location.back).toHaveBeenCalledTimes(1);
+    });
+
     it('translates a dedicated back key into Escape for open overlays', () => {
         const container = document.createElement('div');
         container.className = 'cdk-overlay-container';

@@ -3,6 +3,7 @@ import { ComponentPortal } from '@angular/cdk/portal';
 import { AsyncPipe, CommonModule } from '@angular/common';
 import {
     Component,
+    ElementRef,
     HostListener,
     Injector,
     OnDestroy,
@@ -92,6 +93,8 @@ import {
     PlaylistsService,
     RuntimeCapabilitiesService,
     SettingsStore,
+    TvNavigationService,
+    TvNavLiveSidebarController,
 } from '@iptvnator/services';
 import {
     Channel,
@@ -148,7 +151,20 @@ export class VideoPlayerComponent implements OnInit, OnDestroy {
     private readonly runtime = inject(RuntimeCapabilitiesService);
     private readonly settingsStore = inject(SettingsStore);
     private readonly lastPlayedChannel = inject(LastPlayedChannelService);
+    private readonly tvNavigation = inject(TvNavigationService);
+    private readonly hostElement = inject<ElementRef<HTMLElement>>(ElementRef);
     private readonly storage = inject(StorageMap);
+    /** TV-remote zapping: ← opens the channel sidebar, Back closes it. */
+    private readonly tvNavSidebar = new TvNavLiveSidebarController(
+        this.tvNavigation,
+        {
+            isSidebarCollapsed: () => this.isSidebarCollapsed(),
+            openSidebar: () => this.setLiveSidebarState('expanded'),
+            closeSidebar: () => this.setLiveSidebarState('collapsed'),
+            getSidebarElement: () =>
+                this.hostElement.nativeElement.querySelector('.sidebar'),
+        }
+    );
     private readonly store = inject(Store);
     private readonly epgService = inject(EpgService);
     private readonly externalPlayback = inject(PORTAL_EXTERNAL_PLAYBACK);
@@ -552,6 +568,7 @@ export class VideoPlayerComponent implements OnInit, OnDestroy {
         this.applySettings();
         this.getPlaylistUrlAsParam();
         this.registerHeaderShortcut();
+        this.tvNavSidebar.attach();
 
         // Setup remote control channel change listener (Electron only)
         const remoteControl = this.remoteControlBridge;
@@ -654,6 +671,7 @@ export class VideoPlayerComponent implements OnInit, OnDestroy {
 
     ngOnDestroy(): void {
         this.workspaceHeaderContext.clearAction(M3U_MULTI_EPG_HEADER_ACTION_ID);
+        this.tvNavSidebar.detach();
         this.unsubscribeRemoteChannelChange?.();
         this.unsubscribeRemoteCommand?.();
         this.statusSubscription?.unsubscribe();
@@ -682,11 +700,14 @@ export class VideoPlayerComponent implements OnInit, OnDestroy {
     }
 
     toggleSidebar(): void {
-        const next: LiveSidebarState = this.isSidebarCollapsed()
-            ? 'expanded'
-            : 'collapsed';
-        this.liveSidebarState.set(next);
-        persistLiveSidebarState(next);
+        this.setLiveSidebarState(
+            this.isSidebarCollapsed() ? 'expanded' : 'collapsed'
+        );
+    }
+
+    private setLiveSidebarState(state: LiveSidebarState): void {
+        this.liveSidebarState.set(state);
+        persistLiveSidebarState(state);
     }
 
     onLiveEpgDateNavigation(direction: EpgDateNavigationDirection): void {

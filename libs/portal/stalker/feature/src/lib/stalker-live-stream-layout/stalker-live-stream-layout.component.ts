@@ -29,6 +29,8 @@ import {
     PlaylistsService,
     RuntimeCapabilitiesService,
     SettingsStore,
+    TvNavigationService,
+    TvNavLiveSidebarController,
 } from '@iptvnator/services';
 import {
     Channel,
@@ -106,6 +108,22 @@ export class StalkerLiveStreamLayoutComponent implements OnDestroy {
     private readonly translate = inject(TranslateService);
     private readonly liveSidebarStateService = inject(
         LiveLayoutSidebarStateService
+    );
+    private readonly tvNavigation = inject(TvNavigationService);
+    private readonly hostElement = inject<ElementRef<HTMLElement>>(ElementRef);
+    /** TV-remote zapping: ← opens the channel sidebar, Back closes it. */
+    private readonly tvNavSidebar = new TvNavLiveSidebarController(
+        this.tvNavigation,
+        {
+            isSidebarCollapsed: () =>
+                this.liveSidebarStateService.isCollapsed(),
+            openSidebar: () =>
+                this.liveSidebarStateService.setState('expanded'),
+            closeSidebar: () =>
+                this.liveSidebarStateService.setState('collapsed'),
+            getSidebarElement: () =>
+                this.hostElement.nativeElement.querySelector('.sidebar'),
+        }
     );
     private readonly logger = createLogger('StalkerLiveStream');
     readonly selectedCategoryTitle = this.stalkerStore.getSelectedCategoryName;
@@ -258,6 +276,8 @@ export class StalkerLiveStreamLayoutComponent implements OnDestroy {
     private lastPlaylistId: string | null | undefined = undefined;
 
     constructor() {
+        this.tvNavSidebar.attach();
+
         // Load favorites for current playlist
         const playlistId = this.stalkerStore.currentPlaylist()?._id;
         if (playlistId) {
@@ -394,6 +414,7 @@ export class StalkerLiveStreamLayoutComponent implements OnDestroy {
     }
 
     ngOnDestroy() {
+        this.tvNavSidebar.detach();
         this.unsubscribeRemoteChannelChange?.();
         this.unsubscribeRemoteCommand?.();
         this.removeScrollListener();
