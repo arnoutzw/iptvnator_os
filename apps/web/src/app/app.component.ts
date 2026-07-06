@@ -17,6 +17,7 @@ import {
     DataService,
     RuntimeCapabilitiesService,
     SettingsStore,
+    TvNavigationService,
 } from '@iptvnator/services';
 import {
     AUTO_UPDATE_PLAYLISTS,
@@ -60,6 +61,7 @@ export class AppComponent implements OnInit {
     private settingsService = inject(SettingsService);
     private settingsStore = inject(SettingsStore);
     private runtime = inject(RuntimeCapabilitiesService);
+    private readonly tvNavigation = inject(TvNavigationService);
     private readonly workspaceShellActions = inject(WORKSPACE_SHELL_ACTIONS);
 
     /** Default language as fallback */
@@ -96,6 +98,13 @@ export class AppComponent implements OnInit {
         effect(() => {
             const size = this.settingsStore.coverSize?.() ?? 'medium';
             document.documentElement.dataset.coverSize = size;
+        });
+
+        // TV-remote navigation (arrows/OK/back) follows its settings toggle.
+        effect(() => {
+            this.tvNavigation.setEnabled(
+                this.settingsStore.tvRemoteNavigation?.() ?? true
+            );
         });
 
         if (this.runtime.isElectron) {

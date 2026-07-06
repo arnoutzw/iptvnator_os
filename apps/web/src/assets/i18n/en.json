@@ -433,7 +433,9 @@
         "START_FULLSCREEN_DESCRIPTION": "Open IPTVnator in fullscreen when the app starts. Ideal for TV setups.",
         "AUTO_LAUNCH_AT_LOGIN": "Launch at login",
         "AUTO_LAUNCH_AT_LOGIN_DESCRIPTION": "Start IPTVnator automatically when you log in to your computer (macOS and Windows).",
-        "STARTUP_BEHAVIOR_LAST_CHANNEL": "Resume last channel"
+        "STARTUP_BEHAVIOR_LAST_CHANNEL": "Resume last channel",
+        "TV_REMOTE_NAVIGATION": "TV remote navigation",
+        "TV_REMOTE_NAVIGATION_DESCRIPTION": "Navigate with arrow keys, OK (Enter) and Back — the focused item is highlighted. Disable to restore native arrow-key behavior (scrolling, player seek/volume)."
     },
     "THEMES": {
         "DARK_THEME": "Dark",

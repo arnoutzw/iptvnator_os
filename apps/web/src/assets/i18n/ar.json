@@ -433,7 +433,9 @@
         "START_FULLSCREEN_DESCRIPTION": "فتح IPTVnator في وضع ملء الشاشة عند بدء تشغيل التطبيق. مثالي لأجهزة التلفزيون.",
         "AUTO_LAUNCH_AT_LOGIN": "التشغيل عند تسجيل الدخول",
         "AUTO_LAUNCH_AT_LOGIN_DESCRIPTION": "تشغيل IPTVnator تلقائيًا عند تسجيل الدخول إلى جهاز الكمبيوتر (macOS وWindows).",
-        "STARTUP_BEHAVIOR_LAST_CHANNEL": "استئناف آخر قناة"
+        "STARTUP_BEHAVIOR_LAST_CHANNEL": "استئناف آخر قناة",
+        "TV_REMOTE_NAVIGATION": "التنقل بجهاز التحكم في التلفزيون",
+        "TV_REMOTE_NAVIGATION_DESCRIPTION": "تنقّل باستخدام مفاتيح الأسهم وOK (إدخال) ورجوع — يتم تمييز العنصر المحدد. عطّل الخيار لاستعادة السلوك الأصلي لمفاتيح الأسهم (التمرير، التقديم/مستوى الصوت في المشغّل)."
     },
     "THEMES": {
         "DARK_THEME": "داكن",

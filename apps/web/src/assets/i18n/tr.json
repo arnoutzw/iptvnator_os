@@ -433,7 +433,9 @@
         "START_FULLSCREEN_DESCRIPTION": "Uygulama başlatıldığında IPTVnator’ı tam ekranda aç. TV kurulumları için idealdir.",
         "AUTO_LAUNCH_AT_LOGIN": "Oturum açıldığında başlat",
         "AUTO_LAUNCH_AT_LOGIN_DESCRIPTION": "Bilgisayarınızda oturum açtığınızda IPTVnator’ı otomatik olarak başlat (macOS ve Windows).",
-        "STARTUP_BEHAVIOR_LAST_CHANNEL": "Son kanalı sürdür"
+        "STARTUP_BEHAVIOR_LAST_CHANNEL": "Son kanalı sürdür",
+        "TV_REMOTE_NAVIGATION": "TV kumandası ile gezinme",
+        "TV_REMOTE_NAVIGATION_DESCRIPTION": "Ok tuşları, OK (Enter) ve Geri ile gezinin — odaklanan öğe vurgulanır. Ok tuşlarının yerel davranışını (kaydırma, oynatıcıda sarma/ses) geri getirmek için devre dışı bırakın."
     },
     "THEMES": {
         "DARK_THEME": "Koyu",

@@ -102,6 +102,7 @@ const DEFAULT_SETTINGS = {
     remoteControlPort: 8765,
     startFullscreen: false,
     autoLaunchAtLogin: false,
+    tvRemoteNavigation: true,
     epgUrl: [],
     recordingFolder: '',
     coverSize: 'medium',

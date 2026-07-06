@@ -32,6 +32,13 @@ export class EmbeddedMpvShortcuts {
             return;
         }
 
+        // Skip events the TV-remote spatial navigation already consumed —
+        // an arrow press must either move focus or seek/adjust volume,
+        // not both.
+        if (event.defaultPrevented) {
+            return;
+        }
+
         if (event.key === 'Escape') {
             handlers.onEscape();
             return;

@@ -433,7 +433,9 @@
         "START_FULLSCREEN_DESCRIPTION": "應用程式啟動時以全螢幕開啟 IPTVnator。適合電視環境使用。",
         "AUTO_LAUNCH_AT_LOGIN": "登入時啟動",
         "AUTO_LAUNCH_AT_LOGIN_DESCRIPTION": "登入電腦時自動啟動 IPTVnator（macOS 和 Windows）。",
-        "STARTUP_BEHAVIOR_LAST_CHANNEL": "恢復上次頻道"
+        "STARTUP_BEHAVIOR_LAST_CHANNEL": "恢復上次頻道",
+        "TV_REMOTE_NAVIGATION": "電視遙控器導覽",
+        "TV_REMOTE_NAVIGATION_DESCRIPTION": "使用方向鍵、OK（Enter）和返回鍵進行導覽——聚焦的項目會醒目顯示。停用後恢復方向鍵的原生行為（捲動、播放器快轉/音量）。"
     },
     "THEMES": {
         "DARK_THEME": "深色",

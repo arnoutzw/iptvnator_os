@@ -84,6 +84,12 @@ export class ContentCardComponent {
         this.cardClick.emit();
     }
 
+    /** Keyboard/TV-remote activation (Enter or Space on the focused card). */
+    onKeyboardActivate(event: Event): void {
+        event.preventDefault();
+        this.cardClick.emit();
+    }
+
     onRemoveClick(event: Event): void {
         event.stopPropagation();
         this.remove.emit();

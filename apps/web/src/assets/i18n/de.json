@@ -433,7 +433,9 @@
         "START_FULLSCREEN_DESCRIPTION": "IPTVnator beim Start im Vollbildmodus öffnen. Ideal für TV-Setups.",
         "AUTO_LAUNCH_AT_LOGIN": "Beim Anmelden starten",
         "AUTO_LAUNCH_AT_LOGIN_DESCRIPTION": "IPTVnator automatisch starten, wenn Sie sich an Ihrem Computer anmelden (macOS und Windows).",
-        "STARTUP_BEHAVIOR_LAST_CHANNEL": "Letzten Sender fortsetzen"
+        "STARTUP_BEHAVIOR_LAST_CHANNEL": "Letzten Sender fortsetzen",
+        "TV_REMOTE_NAVIGATION": "TV-Fernbedienungsnavigation",
+        "TV_REMOTE_NAVIGATION_DESCRIPTION": "Navigieren Sie mit den Pfeiltasten, OK (Enter) und Zurück — das fokussierte Element wird hervorgehoben. Deaktivieren, um das native Pfeiltastenverhalten wiederherzustellen (Scrollen, Spulen/Lautstärke im Player)."
     },
     "THEMES": {
         "DARK_THEME": "Dunkel",

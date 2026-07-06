@@ -157,6 +157,21 @@
         </div>
     </div>
 
+    <div class="setting-item">
+        <div class="setting-item__meta">
+            <h4>{{ 'SETTINGS.TV_REMOTE_NAVIGATION' | translate }}</h4>
+            <p>
+                {{ 'SETTINGS.TV_REMOTE_NAVIGATION_DESCRIPTION' | translate }}
+            </p>
+        </div>
+        <div class="setting-item__control setting-item__toggle">
+            <mat-checkbox
+                formControlName="tvRemoteNavigation"
+                data-test-id="checkbox-tv-remote-navigation"
+            ></mat-checkbox>
+        </div>
+    </div>
+
     @if (isDesktop()) {
         <div class="setting-item">
             <div class="setting-item__meta">

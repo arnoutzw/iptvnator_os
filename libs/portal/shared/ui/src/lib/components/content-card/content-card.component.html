@@ -1,4 +1,12 @@
-<div class="content-card" (click)="onCardClick()">
+<div
+    class="content-card"
+    (click)="onCardClick()"
+    (keydown.enter)="onKeyboardActivate($event)"
+    (keydown.space)="onKeyboardActivate($event)"
+    tabindex="0"
+    role="button"
+    [attr.aria-label]="title()"
+>
     <div class="thumbnail-wrapper">
         @if (showRemoveButton()) {
             <button

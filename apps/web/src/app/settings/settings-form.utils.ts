@@ -63,6 +63,7 @@ export function createSettingsForm(
         vlcReuseInstance: false,
         startFullscreen: false,
         autoLaunchAtLogin: false,
+        tvRemoteNavigation: true,
         remoteControl: false,
         remoteControlPort: [
             8765,
@@ -138,6 +139,7 @@ export function createSettingsFromFormValue(
         remoteControlPort: Number(value.remoteControlPort ?? 8765),
         startFullscreen: value.startFullscreen ?? false,
         autoLaunchAtLogin: value.autoLaunchAtLogin ?? false,
+        tvRemoteNavigation: value.tvRemoteNavigation ?? true,
         recordingFolder: value.recordingFolder ?? '',
         coverSize: value.coverSize ?? 'medium',
         epgUrl,

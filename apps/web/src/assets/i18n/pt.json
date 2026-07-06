@@ -433,7 +433,9 @@
         "START_FULLSCREEN_DESCRIPTION": "Abrir o IPTVnator em ecrã inteiro ao iniciar a aplicação. Ideal para configurações de TV.",
         "AUTO_LAUNCH_AT_LOGIN": "Iniciar ao iniciar sessão",
         "AUTO_LAUNCH_AT_LOGIN_DESCRIPTION": "Iniciar o IPTVnator automaticamente quando inicia sessão no computador (macOS e Windows).",
-        "STARTUP_BEHAVIOR_LAST_CHANNEL": "Retomar último canal"
+        "STARTUP_BEHAVIOR_LAST_CHANNEL": "Retomar último canal",
+        "TV_REMOTE_NAVIGATION": "Navegação com comando de TV",
+        "TV_REMOTE_NAVIGATION_DESCRIPTION": "Navegue com as setas, OK (Enter) e Voltar — o item focado é realçado. Desative para restaurar o comportamento nativo das setas (deslocamento, avanço/volume do leitor)."
     },
     "THEMES": {
         "DARK_THEME": "Escuro",

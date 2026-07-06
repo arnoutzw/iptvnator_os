@@ -242,6 +242,9 @@ export class AudioPlayerComponent {
 
     @HostListener('document:keydown', ['$event'])
     handleKeyboard(event: KeyboardEvent) {
+        // Skip events the TV-remote spatial navigation already consumed —
+        // an arrow press must either move focus or change volume, not both.
+        if (event.defaultPrevented) return;
         if (
             event.target instanceof HTMLInputElement ||
             event.target instanceof HTMLTextAreaElement
